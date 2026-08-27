@@ -15,13 +15,67 @@
 // 'api'  : appels vers les API réelles (décommenter les URLs ci-dessous)
 define('DATA_SOURCE_MODE', 'mock');
 
-// ─── Chemins absolus ────────────────────────────────────────────────────────
+// ─── Chemins absolus (système de fichiers) ──────────────────────────────────
 define('ROOT_PATH',       dirname(__DIR__));
 define('MOCK_DATA_PATH',  ROOT_PATH . '/mock_data');
 define('ASSETS_PATH',     ROOT_PATH . '/assets');
 define('LOGS_PATH',       ROOT_PATH . '/logs');
 define('INCLUDES_PATH',   ROOT_PATH . '/includes');
 define('CONNECTORS_PATH', ROOT_PATH . '/connectors');
+
+// ─── BASE_URL — Détection automatique du contexte de déploiement ─────────────
+// Fonctionne que le projet soit à la racine (http://localhost/)
+// ou dans un sous-dossier XAMPP (http://localhost:8085/interoperabilite_sige_burundi/sige/public/)
+if (!defined('BASE_URL')) {
+    if (php_sapi_name() === 'cli') {
+        // Serveur CLI built-in (développement sandbox)
+        define('BASE_URL',        'http://localhost:3000');
+        define('PUBLIC_URL',      'http://localhost:3000');
+        define('ADMIN_URL',       'http://localhost:3000/admin');
+        define('ASSETS_BASE_URL', '/assets');
+        define('API_BASE_URL',    '/api');
+        define('ADMIN_BASE_URL',  '/admin');
+        define('PUBLIC_BASE_URL', '');
+    } else {
+        // Apache / XAMPP — calcul dynamique depuis SCRIPT_FILENAME
+        // ROOT_PATH = /path/to/sige (dossier racine du projet)
+        // ROOT_PATH . '/public' = dossier public/ servi par Apache
+        $docRoot    = rtrim($_SERVER['DOCUMENT_ROOT'], '/');
+        $publicPath = ROOT_PATH . '/public';
+
+        // Calculer le chemin web relatif vers public/
+        // Ex: docRoot=/Applications/XAMPP/htdocs, publicPath=.../htdocs/interoperabilite_sige_burundi/sige/public
+        // → webPublicPath = /interoperabilite_sige_burundi/sige/public
+        $webPublicPath = '';
+        if (strpos($publicPath, $docRoot) === 0) {
+            $webPublicPath = str_replace('\\', '/', substr($publicPath, strlen($docRoot)));
+        } else {
+            // Fallback : déduire depuis REQUEST_URI + SCRIPT_NAME
+            $scriptName   = $_SERVER['SCRIPT_NAME'] ?? '/index.php';
+            $webPublicPath = rtrim(dirname($scriptName), '/\\');
+            // Remonter si on est dans un sous-dossier (ex: /api ou /admin depuis public/)
+            if (strpos($scriptName, '/api/') !== false) {
+                $webPublicPath = dirname(dirname($scriptName));
+            } elseif (strpos($scriptName, '/admin/') !== false) {
+                $webPublicPath = dirname(dirname($scriptName)) . '/public';
+            }
+            $webPublicPath = rtrim($webPublicPath, '/');
+        }
+        $webPublicPath = rtrim($webPublicPath, '/');
+
+        // Scheme + host
+        $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+        $host   = $_SERVER['HTTP_HOST'] ?? 'localhost';
+
+        define('PUBLIC_BASE_URL',  $webPublicPath);                     // ex: /interoperabilite_sige_burundi/sige/public
+        define('BASE_URL',         $scheme . '://' . $host . $webPublicPath);
+        define('PUBLIC_URL',       BASE_URL);
+        define('ASSETS_BASE_URL',  $webPublicPath . '/assets');         // ex: /inter.../sige/public/assets
+        define('API_BASE_URL',     $webPublicPath . '/api');            // ex: /inter.../sige/public/api
+        define('ADMIN_URL',        BASE_URL . '/../admin');
+        define('ADMIN_BASE_URL',   dirname($webPublicPath) . '/admin'); // ex: /inter.../sige/admin
+    }
+}
 
 // ─── Configuration base de données ──────────────────────────────────────────
 define('DB_HOST', 'localhost');
