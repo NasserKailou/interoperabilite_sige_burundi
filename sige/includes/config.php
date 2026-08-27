@@ -25,9 +25,9 @@ define('CONNECTORS_PATH', ROOT_PATH . '/connectors');
 
 // ─── Configuration base de données ──────────────────────────────────────────
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'sige_burundi');
-define('DB_USER', 'sige');
-define('DB_PASS', 'SigeBurundi2024!');
+define('DB_NAME', 'sige_bu');
+define('DB_USER', 'root');
+define('DB_PASS', '');
 define('DB_CHARSET', 'utf8mb4');
 
 // ─── Endpoints API réelles (utilisés uniquement si DATA_SOURCE_MODE = 'api') ─
