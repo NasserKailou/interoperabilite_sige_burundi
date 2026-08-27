@@ -14,30 +14,11 @@ foreach ($annees as $a) {
     if ($a['code_type_annee'] == $anneeId) { $anneeLib = $a['libelle']; break; }
 }
 
+$pageTitle  = 'Données Élèves';
+$pageIcon   = 'fas fa-users';
+$activePage = 'eleves';
 require_once 'layout.php';
 ?>
-<!-- Content Wrapper -->
-<div class="content-wrapper">
-
-    <!-- Page Header -->
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0"><i class="fas fa-users mr-2 text-primary"></i>Données Élèves</h1>
-                </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="dashboard.php">Tableau de bord</a></li>
-                        <li class="breadcrumb-item active">Élèves</li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="content">
-        <div class="container-fluid">
 
             <!-- Filtres -->
             <div class="card card-outline card-primary mb-4">
@@ -175,10 +156,6 @@ require_once 'layout.php';
                     </table>
                 </div>
             </div>
-
-        </div>
-    </div>
-</div>
 
 <?php require_once 'layout_end.php'; ?>
 

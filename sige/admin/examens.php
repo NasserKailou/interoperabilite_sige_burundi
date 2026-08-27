@@ -10,28 +10,11 @@ $connector = ConnectorFactory::getConnector();
 $annees    = $connector->getAnnees();
 $anneeId   = (int)($_GET['annee'] ?? 14);
 
+$pageTitle  = 'Examens & Concours';
+$pageIcon   = 'fas fa-file-alt';
+$activePage = 'examens';
 require_once 'layout.php';
 ?>
-<div class="content-wrapper">
-
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0"><i class="fas fa-file-alt mr-2 text-danger"></i>Examens &amp; Concours</h1>
-                </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="dashboard.php">Tableau de bord</a></li>
-                        <li class="breadcrumb-item active">Examens</li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="content">
-        <div class="container-fluid">
 
             <!-- Filtres -->
             <div class="card card-outline card-danger mb-4">
@@ -153,10 +136,6 @@ require_once 'layout.php';
                     </div>
                 </div>
             </div>
-
-        </div>
-    </div>
-</div>
 
 <?php require_once 'layout_end.php'; ?>
 
