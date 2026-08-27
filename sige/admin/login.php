@@ -232,7 +232,7 @@ $csrf = csrf_token();
     </div>
 
     <div class="login-footer">
-        <a href="../public/"><i class="fas fa-arrow-left"></i> Retour au portail public</a>
+        <a href="<?= PUBLIC_BASE_URL ?: '../public/' ?>"><i class="fas fa-arrow-left"></i> Retour au portail public</a>
         <p>&copy; <?= date('Y') ?> SIGE Burundi — Système sécurisé</p>
     </div>
 </div>

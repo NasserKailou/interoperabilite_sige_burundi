@@ -28,9 +28,8 @@ function json_response(array $data, int $status = 200): void
  */
 function csrf_token(): string
 {
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
+    // Utiliser Auth::startSession() pour garantir le même nom de session que le reste de l'app
+    Auth::startSession();
     if (empty($_SESSION[CSRF_TOKEN_NAME])) {
         $_SESSION[CSRF_TOKEN_NAME] = bin2hex(random_bytes(32));
     }
@@ -42,10 +41,10 @@ function csrf_token(): string
  */
 function verify_csrf(string $token): bool
 {
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
+    // Même session que csrf_token() — nom SESSION_NAME défini dans config.php
+    Auth::startSession();
     return isset($_SESSION[CSRF_TOKEN_NAME])
+        && !empty($token)
         && hash_equals($_SESSION[CSRF_TOKEN_NAME], $token);
 }
 

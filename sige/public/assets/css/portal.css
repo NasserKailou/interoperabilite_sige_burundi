@@ -333,6 +333,10 @@ img { max-width: 100%; }
   cursor: pointer;
   display: flex;
   flex-direction: column;
+  /* Hauteur fixe — les cartes ne s'allongent pas indéfiniment */
+  height: 280px;
+  min-height: 280px;
+  max-height: 280px;
 }
 .kanban-card:hover {
   transform: translateY(-4px);
@@ -371,7 +375,12 @@ img { max-width: 100%; }
 .kanban-card.red   .kanban-badge { background: var(--red-light);   color: #b71c1c; }
 .kanban-card.sky   .kanban-badge { background: #e1f5fe; color: #01579b; }
 
-.kanban-body { padding: .75rem 1.5rem 1rem; flex: 1; }
+.kanban-body {
+  padding: .75rem 1.5rem 1rem;
+  flex: 1;
+  overflow: hidden;   /* cache le débordement si le contenu est trop grand */
+  min-height: 0;      /* nécessaire pour que flex-shrink fonctionne correctement */
+}
 .kanban-stat {
   margin-bottom: .75rem;
 }
@@ -390,8 +399,10 @@ img { max-width: 100%; }
   margin-top: 2px;
 }
 .kanban-sparkline {
-  height: 50px;
-  margin: .5rem 0;
+  height: 44px;
+  margin: .25rem 0;
+  display: block;
+  width: 100%;
 }
 .kanban-meta {
   display: flex;
