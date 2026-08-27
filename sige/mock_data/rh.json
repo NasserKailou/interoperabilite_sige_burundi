@@ -1,0 +1,78 @@
+{
+  "code_type_annee": 14,
+  "libelle_annee": "2028/2029",
+  "synthese": {
+    "total_personnel": 78500,
+    "enseignants": 68200,
+    "administratifs": 10300,
+    "hommes": 41000,
+    "femmes": 37500,
+    "enseignants_titulaires": 52400,
+    "enseignants_contractuels": 15800,
+    "ratio_eleves_enseignant_national": 37.8,
+    "taux_feminisation_enseignants": 42.8
+  },
+  "par_etablissement": [
+    {
+      "code_etab": 76190,
+      "enseignants_titulaires": 14, "enseignants_contractuels": 4,
+      "personnel_administratif": 3,
+      "hommes": 11, "femmes": 10,
+      "ratio_eleves_enseignant": 34.4
+    },
+    {
+      "code_etab": 21739,
+      "enseignants_titulaires": 22, "enseignants_contractuels": 6,
+      "personnel_administratif": 5,
+      "hommes": 17, "femmes": 16,
+      "ratio_eleves_enseignant": 31.8
+    },
+    {
+      "code_etab": 10245,
+      "enseignants_titulaires": 48, "enseignants_contractuels": 12,
+      "personnel_administratif": 10,
+      "hommes": 38, "femmes": 32,
+      "ratio_eleves_enseignant": 23.7
+    },
+    {
+      "code_etab": 43512,
+      "enseignants_titulaires": 32, "enseignants_contractuels": 8,
+      "personnel_administratif": 6,
+      "hommes": 25, "femmes": 21,
+      "ratio_eleves_enseignant": 28.5
+    }
+  ],
+  "par_province": [
+    { "id_province": 1,  "enseignants": 9800,  "titulaires": 7600, "contractuels": 2200, "administratifs": 1500, "hommes": 5800, "femmes": 5500, "ratio": 29.1 },
+    { "id_province": 2,  "enseignants": 3600,  "titulaires": 2780, "contractuels": 820,  "administratifs": 520,  "hommes": 2200, "femmes": 1920, "ratio": 29.2 },
+    { "id_province": 3,  "enseignants": 3900,  "titulaires": 3010, "contractuels": 890,  "administratifs": 565,  "hommes": 2380, "femmes": 2085, "ratio": 30.3 },
+    { "id_province": 4,  "enseignants": 3750,  "titulaires": 2890, "contractuels": 860,  "administratifs": 542,  "hommes": 2290, "femmes": 2002, "ratio": 29.9 },
+    { "id_province": 5,  "enseignants": 2860,  "titulaires": 2200, "contractuels": 660,  "administratifs": 414,  "hommes": 1740, "femmes": 1534, "ratio": 30.8 },
+    { "id_province": 6,  "enseignants": 3200,  "titulaires": 2465, "contractuels": 735,  "administratifs": 464,  "hommes": 1945, "femmes": 1719, "ratio": 30.6 },
+    { "id_province": 7,  "enseignants": 6500,  "titulaires": 5010, "contractuels": 1490, "administratifs": 942,  "hommes": 3960, "femmes": 3482, "ratio": 30.5 },
+    { "id_province": 8,  "enseignants": 2980,  "titulaires": 2296, "contractuels": 684,  "administratifs": 432,  "hommes": 1815, "femmes": 1597, "ratio": 30.9 },
+    { "id_province": 9,  "enseignants": 4100,  "titulaires": 3157, "contractuels": 943,  "administratifs": 595,  "hommes": 2498, "femmes": 2197, "ratio": 30.5 },
+    { "id_province": 10, "enseignants": 3750,  "titulaires": 2888, "contractuels": 862,  "administratifs": 544,  "hommes": 2285, "femmes": 2009, "ratio": 30.7 },
+    { "id_province": 11, "enseignants": 3200,  "titulaires": 2464, "contractuels": 736,  "administratifs": 464,  "hommes": 1949, "femmes": 1715, "ratio": 30.6 },
+    { "id_province": 12, "enseignants": 2750,  "titulaires": 2118, "contractuels": 632,  "administratifs": 399,  "hommes": 1675, "femmes": 1474, "ratio": 30.9 },
+    { "id_province": 13, "enseignants": 4200,  "titulaires": 3234, "contractuels": 966,  "administratifs": 609,  "hommes": 2558, "femmes": 2251, "ratio": 30.5 },
+    { "id_province": 14, "enseignants": 2520,  "titulaires": 1940, "contractuels": 580,  "administratifs": 365,  "hommes": 1535, "femmes": 1350, "ratio": 31.0 },
+    { "id_province": 15, "enseignants": 5500,  "titulaires": 4235, "contractuels": 1265, "administratifs": 798,  "hommes": 3351, "femmes": 2947, "ratio": 30.5 },
+    { "id_province": 16, "enseignants": 2940,  "titulaires": 2264, "contractuels": 676,  "administratifs": 426,  "hommes": 1791, "femmes": 1575, "ratio": 30.6 },
+    { "id_province": 17, "enseignants": 3100,  "titulaires": 2387, "contractuels": 713,  "administratifs": 450,  "hommes": 1888, "femmes": 1662, "ratio": 30.6 },
+    { "id_province": 18, "enseignants": 3750,  "titulaires": 2888, "contractuels": 862,  "administratifs": 544,  "hommes": 2285, "femmes": 2009, "ratio": 30.7 }
+  ],
+  "evolution": [
+    { "code_type_annee": 10, "libelle": "2024/2025", "total": 72400, "enseignants": 62800, "administratifs": 9600  },
+    { "code_type_annee": 11, "libelle": "2025/2026", "total": 74200, "enseignants": 64400, "administratifs": 9800  },
+    { "code_type_annee": 12, "libelle": "2026/2027", "total": 75800, "enseignants": 65800, "administratifs": 10000 },
+    { "code_type_annee": 13, "libelle": "2027/2028", "total": 77100, "enseignants": 67000, "administratifs": 10100 },
+    { "code_type_annee": 14, "libelle": "2028/2029", "total": 78500, "enseignants": 68200, "administratifs": 10300 }
+  ],
+  "categories": [
+    { "categorie": "Professeur certifié (A0)", "effectif": 8420,  "pct": 12.3 },
+    { "categorie": "Professeur diplômé (A1)",  "effectif": 18560, "pct": 27.2 },
+    { "categorie": "Instituteur diplômé (A2)", "effectif": 28400, "pct": 41.6 },
+    { "categorie": "Enseignant contractuel",   "effectif": 12820, "pct": 18.8 }
+  ]
+}

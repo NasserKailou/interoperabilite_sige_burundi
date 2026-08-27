@@ -1,0 +1,143 @@
+{
+  "annee_reference": 14,
+  "etablissements": [
+    {
+      "code_etab": 76190,
+      "nom": "NOTRE DAME DE L'ESPÉRANCE",
+      "id_province": 2, "id_commune": 201, "id_colline": 20101,
+      "id_secteur": 2, "id_niveau": 2, "id_systeme": 1,
+      "milieu": "rural",
+      "telephone": "71470639",
+      "directeur": "Ndayishimiye Jean-Baptiste",
+      "nb_salles_classe": 12, "nb_salles_utilisees": 10,
+      "electricite": true, "eau_potable": false, "acces_internet": false,
+      "latrines_filles": 4, "latrines_garcons": 4,
+      "annee_creation": 1998
+    },
+    {
+      "code_etab": 21739,
+      "nom": "ÉCOLE FONDAMENTALE KABEZI III",
+      "id_province": 3, "id_commune": 301, "id_colline": 30101,
+      "id_secteur": 1, "id_niveau": 2, "id_systeme": 1,
+      "milieu": "semi-urbain",
+      "telephone": "79000000",
+      "directeur": "Niyonzima Thérèse",
+      "nb_salles_classe": 18, "nb_salles_utilisees": 18,
+      "electricite": true, "eau_potable": true, "acces_internet": true,
+      "latrines_filles": 6, "latrines_garcons": 6,
+      "annee_creation": 1972
+    },
+    {
+      "code_etab": 10245,
+      "nom": "LYCÉE MUNICIPAL DE BUJUMBURA",
+      "id_province": 1, "id_commune": 101, "id_colline": 10101,
+      "id_secteur": 1, "id_niveau": 3, "id_systeme": 1,
+      "milieu": "urbain",
+      "telephone": "22223456",
+      "directeur": "Hakizimana Robert",
+      "nb_salles_classe": 30, "nb_salles_utilisees": 30,
+      "electricite": true, "eau_potable": true, "acces_internet": true,
+      "latrines_filles": 10, "latrines_garcons": 10,
+      "annee_creation": 1962
+    },
+    {
+      "code_etab": 43512,
+      "nom": "COLLÈGE SAINT-ALBERT DE GITEGA",
+      "id_province": 7, "id_commune": 701, "id_colline": 70101,
+      "id_secteur": 3, "id_niveau": 3, "id_systeme": 1,
+      "milieu": "urbain",
+      "telephone": "22402578",
+      "directeur": "Uwimana Céleste",
+      "nb_salles_classe": 24, "nb_salles_utilisees": 22,
+      "electricite": true, "eau_potable": true, "acces_internet": false,
+      "latrines_filles": 8, "latrines_garcons": 8,
+      "annee_creation": 1955
+    },
+    {
+      "code_etab": 58874,
+      "nom": "ÉCOLE PRIMAIRE DE NGOZI CENTRE",
+      "id_province": 15, "id_commune": 1501, "id_colline": null,
+      "id_secteur": 1, "id_niveau": 2, "id_systeme": 1,
+      "milieu": "urbain",
+      "telephone": "22302100",
+      "directeur": "Niyokindi Emmanuel",
+      "nb_salles_classe": 14, "nb_salles_utilisees": 14,
+      "electricite": true, "eau_potable": true, "acces_internet": false,
+      "latrines_filles": 5, "latrines_garcons": 4,
+      "annee_creation": 1968
+    },
+    {
+      "code_etab": 67320,
+      "nom": "ÉCOLE TECHNIQUE PROVINCIALE DE GITEGA",
+      "id_province": 7, "id_commune": 701, "id_colline": 70102,
+      "id_secteur": 1, "id_niveau": 3, "id_systeme": 2,
+      "milieu": "urbain",
+      "telephone": "22402312",
+      "directeur": "Cishahayo Patrick",
+      "nb_salles_classe": 20, "nb_salles_utilisees": 18,
+      "electricite": true, "eau_potable": true, "acces_internet": true,
+      "latrines_filles": 7, "latrines_garcons": 7,
+      "annee_creation": 1980
+    },
+    {
+      "code_etab": 33401,
+      "nom": "ÉCOLE PRIMAIRE DE RUCE",
+      "id_province": 2, "id_commune": 201, "id_colline": 20102,
+      "id_secteur": 1, "id_niveau": 2, "id_systeme": 1,
+      "milieu": "rural",
+      "telephone": "",
+      "directeur": "Nkurunziza Alphonse",
+      "nb_salles_classe": 8, "nb_salles_utilisees": 8,
+      "electricite": false, "eau_potable": false, "acces_internet": false,
+      "latrines_filles": 3, "latrines_garcons": 3,
+      "annee_creation": 1985
+    },
+    {
+      "code_etab": 44820,
+      "nom": "INSTITUT PÉDAGOGIQUE DE NGOZI",
+      "id_province": 15, "id_commune": 1501, "id_colline": null,
+      "id_secteur": 1, "id_niveau": 3, "id_systeme": 3,
+      "milieu": "urbain",
+      "telephone": "22302455",
+      "directeur": "Hatungimana Jocelyne",
+      "nb_salles_classe": 16, "nb_salles_utilisees": 16,
+      "electricite": true, "eau_potable": true, "acces_internet": true,
+      "latrines_filles": 6, "latrines_garcons": 5,
+      "annee_creation": 1975
+    }
+  ],
+  "synthese": {
+    "total_etablissements": 4520,
+    "par_secteur": { "public": 3100, "prive": 980, "conventionne": 440 },
+    "par_milieu":  { "urbain": 1350, "semi-urbain": 450, "rural": 2720 },
+    "par_niveau":  { "prescolaire": 320, "fondamental": 3480, "post-fondamental": 720 },
+    "par_systeme": { "general": 3900, "technique": 380, "pedagogique": 240 },
+    "infrastructures": {
+      "avec_electricite": 2850,
+      "avec_eau_potable": 2100,
+      "avec_internet": 680,
+      "salles_total": 74800,
+      "salles_utilisees": 68200
+    }
+  },
+  "par_province": [
+    { "id_province": 1,  "total": 480, "public": 310, "prive": 120, "conventionne": 50 },
+    { "id_province": 2,  "total": 180, "public": 140, "prive": 25,  "conventionne": 15 },
+    { "id_province": 3,  "total": 210, "public": 165, "prive": 30,  "conventionne": 15 },
+    { "id_province": 4,  "total": 195, "public": 155, "prive": 28,  "conventionne": 12 },
+    { "id_province": 5,  "total": 142, "public": 115, "prive": 18,  "conventionne": 9  },
+    { "id_province": 6,  "total": 168, "public": 132, "prive": 24,  "conventionne": 12 },
+    { "id_province": 7,  "total": 350, "public": 240, "prive": 70,  "conventionne": 40 },
+    { "id_province": 8,  "total": 155, "public": 124, "prive": 20,  "conventionne": 11 },
+    { "id_province": 9,  "total": 220, "public": 175, "prive": 30,  "conventionne": 15 },
+    { "id_province": 10, "total": 185, "public": 148, "prive": 25,  "conventionne": 12 },
+    { "id_province": 11, "total": 160, "public": 128, "prive": 22,  "conventionne": 10 },
+    { "id_province": 12, "total": 140, "public": 112, "prive": 18,  "conventionne": 10 },
+    { "id_province": 13, "total": 210, "public": 168, "prive": 28,  "conventionne": 14 },
+    { "id_province": 14, "total": 130, "public": 104, "prive": 17,  "conventionne": 9  },
+    { "id_province": 15, "total": 280, "public": 215, "prive": 45,  "conventionne": 20 },
+    { "id_province": 16, "total": 145, "public": 116, "prive": 20,  "conventionne": 9  },
+    { "id_province": 17, "total": 155, "public": 124, "prive": 21,  "conventionne": 10 },
+    { "id_province": 18, "total": 215, "public": 169, "prive": 29,  "conventionne": 17 }
+  ]
+}

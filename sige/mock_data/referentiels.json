@@ -1,0 +1,97 @@
+{
+  "annees": [
+    { "code_type_annee": 10, "libelle": "2024/2025", "ordre": 10 },
+    { "code_type_annee": 11, "libelle": "2025/2026", "ordre": 11 },
+    { "code_type_annee": 12, "libelle": "2026/2027", "ordre": 12 },
+    { "code_type_annee": 13, "libelle": "2027/2028", "ordre": 13 },
+    { "code_type_annee": 14, "libelle": "2028/2029", "ordre": 14 }
+  ],
+  "provinces": [
+    { "id_province": 1,  "libelle": "Bujumbura Mairie",   "code": "BJM" },
+    { "id_province": 2,  "libelle": "Bubanza",             "code": "BUB" },
+    { "id_province": 3,  "libelle": "Bujumbura Rural",     "code": "BRU" },
+    { "id_province": 4,  "libelle": "Bururi",              "code": "BUR" },
+    { "id_province": 5,  "libelle": "Cankuzo",             "code": "CAN" },
+    { "id_province": 6,  "libelle": "Cibitoke",            "code": "CIB" },
+    { "id_province": 7,  "libelle": "Gitega",              "code": "GIT" },
+    { "id_province": 8,  "libelle": "Karuzi",              "code": "KRZ" },
+    { "id_province": 9,  "libelle": "Kayanza",             "code": "KYZ" },
+    { "id_province": 10, "libelle": "Kirundo",             "code": "KIR" },
+    { "id_province": 11, "libelle": "Makamba",             "code": "MAK" },
+    { "id_province": 12, "libelle": "Muramvya",            "code": "MUR" },
+    { "id_province": 13, "libelle": "Muyinga",             "code": "MUY" },
+    { "id_province": 14, "libelle": "Mwaro",               "code": "MWA" },
+    { "id_province": 15, "libelle": "Ngozi",               "code": "NGZ" },
+    { "id_province": 16, "libelle": "Rutana",              "code": "RUT" },
+    { "id_province": 17, "libelle": "Ruyigi",              "code": "RUY" },
+    { "id_province": 18, "libelle": "Rumonge",             "code": "RMG" }
+  ],
+  "communes": [
+    { "id_commune": 101, "id_province": 1, "libelle": "Mukaza" },
+    { "id_commune": 102, "id_province": 1, "libelle": "Ntahangwa" },
+    { "id_commune": 103, "id_province": 1, "libelle": "Muha" },
+    { "id_commune": 201, "id_province": 2, "libelle": "Bubanza" },
+    { "id_commune": 202, "id_province": 2, "libelle": "Gihanga" },
+    { "id_commune": 203, "id_province": 2, "libelle": "Mpanda" },
+    { "id_commune": 204, "id_province": 2, "libelle": "Musigati" },
+    { "id_commune": 301, "id_province": 3, "libelle": "Kabezi" },
+    { "id_commune": 302, "id_province": 3, "libelle": "Isare" },
+    { "id_commune": 303, "id_province": 3, "libelle": "Mugamba" },
+    { "id_commune": 304, "id_province": 3, "libelle": "Mutimbuzi" },
+    { "id_commune": 401, "id_province": 4, "libelle": "Bururi" },
+    { "id_commune": 402, "id_province": 4, "libelle": "Buyengero" },
+    { "id_commune": 403, "id_province": 4, "libelle": "Matana" },
+    { "id_commune": 501, "id_province": 5, "libelle": "Cankuzo" },
+    { "id_commune": 502, "id_province": 5, "libelle": "Gisagara" },
+    { "id_commune": 601, "id_province": 6, "libelle": "Cibitoke" },
+    { "id_commune": 602, "id_province": 6, "libelle": "Buganda" },
+    { "id_commune": 701, "id_province": 7, "libelle": "Gitega" },
+    { "id_commune": 702, "id_province": 7, "libelle": "Bugendana" },
+    { "id_commune": 703, "id_province": 7, "libelle": "Giheta" },
+    { "id_commune": 801, "id_province": 8, "libelle": "Buhiga" },
+    { "id_commune": 802, "id_province": 8, "libelle": "Gitaramuka" },
+    { "id_commune": 901, "id_province": 9, "libelle": "Kayanza" },
+    { "id_commune": 902, "id_province": 9, "libelle": "Butaganzwa" },
+    { "id_commune": 1001, "id_province": 10, "libelle": "Kirundo" },
+    { "id_commune": 1101, "id_province": 11, "libelle": "Makamba" },
+    { "id_commune": 1201, "id_province": 12, "libelle": "Muramvya" },
+    { "id_commune": 1301, "id_province": 13, "libelle": "Muyinga" },
+    { "id_commune": 1401, "id_province": 14, "libelle": "Mwaro" },
+    { "id_commune": 1501, "id_province": 15, "libelle": "Ngozi" },
+    { "id_commune": 1601, "id_province": 16, "libelle": "Rutana" },
+    { "id_commune": 1701, "id_province": 17, "libelle": "Ruyigi" },
+    { "id_commune": 1801, "id_province": 18, "libelle": "Rumonge" }
+  ],
+  "collines": [
+    { "id_colline": 10101, "id_commune": 101, "libelle": "Rohero I" },
+    { "id_colline": 10102, "id_commune": 101, "libelle": "Rohero II" },
+    { "id_colline": 10201, "id_commune": 102, "libelle": "Cibitoke Quartier" },
+    { "id_colline": 10202, "id_commune": 102, "libelle": "Kamenge" },
+    { "id_colline": 20101, "id_commune": 201, "libelle": "Quartier Bubanza Centre" },
+    { "id_colline": 20102, "id_commune": 201, "libelle": "Ruce" },
+    { "id_colline": 20201, "id_commune": 202, "libelle": "Gihanga Centre" },
+    { "id_colline": 30101, "id_commune": 301, "libelle": "Kabezi Centre" },
+    { "id_colline": 70101, "id_commune": 701, "libelle": "Gitega Centre" },
+    { "id_colline": 70102, "id_commune": 701, "libelle": "Songa" }
+  ],
+  "secteurs": [
+    { "id_secteur": 1, "libelle": "Public",       "couleur": "#1e88e5" },
+    { "id_secteur": 2, "libelle": "Privé",        "couleur": "#e53935" },
+    { "id_secteur": 3, "libelle": "Conventionné", "couleur": "#43a047" }
+  ],
+  "niveaux": [
+    { "id_niveau": 1, "libelle": "Préscolaire",      "abrev": "PRESC" },
+    { "id_niveau": 2, "libelle": "Fondamental",       "abrev": "FOND"  },
+    { "id_niveau": 3, "libelle": "Post-fondamental",  "abrev": "POST"  }
+  ],
+  "types_enseignement": [
+    { "id_systeme": 1, "libelle": "Général/Fondamental", "abrev": "GEN" },
+    { "id_systeme": 2, "libelle": "Technique",            "abrev": "TECH" },
+    { "id_systeme": 3, "libelle": "Pédagogique",          "abrev": "PED"  },
+    { "id_systeme": 4, "libelle": "Artistique",           "abrev": "ART"  }
+  ],
+  "milieux": [
+    { "id": "urbain", "libelle": "Urbain" },
+    { "id": "rural",  "libelle": "Rural"  }
+  ]
+}

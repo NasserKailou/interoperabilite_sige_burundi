@@ -1,0 +1,99 @@
+{
+  "effectifs_par_annee": [
+    { "code_type_annee": 10, "libelle": "2024/2025", "total": 2368000, "garcons": 1186000, "filles": 1182000 },
+    { "code_type_annee": 11, "libelle": "2025/2026", "total": 2412000, "garcons": 1208000, "filles": 1204000 },
+    { "code_type_annee": 12, "libelle": "2026/2027", "total": 2450000, "garcons": 1230000, "filles": 1220000 },
+    { "code_type_annee": 13, "libelle": "2027/2028", "total": 2510000, "garcons": 1258000, "filles": 1252000 },
+    { "code_type_annee": 14, "libelle": "2028/2029", "total": 2578000, "garcons": 1289000, "filles": 1289000 }
+  ],
+  "effectifs_par_etablissement": [
+    {
+      "code_etab": 76190,
+      "code_type_annee": 14,
+      "total": 620, "garcons": 305, "filles": 315,
+      "par_niveau": [
+        { "id_niveau": 2, "annee_etude": "1ère année",  "garcons": 45, "filles": 50 },
+        { "id_niveau": 2, "annee_etude": "2ème année",  "garcons": 40, "filles": 42 },
+        { "id_niveau": 2, "annee_etude": "3ème année",  "garcons": 38, "filles": 41 },
+        { "id_niveau": 2, "annee_etude": "4ème année",  "garcons": 36, "filles": 38 },
+        { "id_niveau": 2, "annee_etude": "5ème année",  "garcons": 34, "filles": 37 },
+        { "id_niveau": 2, "annee_etude": "6ème année",  "garcons": 36, "filles": 40 },
+        { "id_niveau": 2, "annee_etude": "7ème année",  "garcons": 42, "filles": 38 },
+        { "id_niveau": 2, "annee_etude": "8ème année",  "garcons": 34, "filles": 29 }
+      ],
+      "par_nationalite": [
+        { "nationalite": "Burundaise",    "effectif": 600 },
+        { "nationalite": "Congolaise (RDC)", "effectif": 18 },
+        { "nationalite": "Rwandaise",     "effectif": 2   }
+      ]
+    },
+    {
+      "code_etab": 21739,
+      "code_type_annee": 14,
+      "total": 890, "garcons": 445, "filles": 445,
+      "par_niveau": [
+        { "id_niveau": 2, "annee_etude": "1ère année", "garcons": 62, "filles": 60 },
+        { "id_niveau": 2, "annee_etude": "2ème année", "garcons": 58, "filles": 57 },
+        { "id_niveau": 2, "annee_etude": "3ème année", "garcons": 55, "filles": 56 }
+      ],
+      "par_nationalite": [
+        { "nationalite": "Burundaise", "effectif": 882 },
+        { "nationalite": "Autres",     "effectif": 8   }
+      ]
+    },
+    {
+      "code_etab": 10245,
+      "code_type_annee": 14,
+      "total": 1420, "garcons": 720, "filles": 700,
+      "par_niveau": [
+        { "id_niveau": 3, "annee_etude": "9ème année",  "garcons": 185, "filles": 178 },
+        { "id_niveau": 3, "annee_etude": "10ème année", "garcons": 178, "filles": 170 },
+        { "id_niveau": 3, "annee_etude": "11ème année", "garcons": 168, "filles": 162 },
+        { "id_niveau": 3, "annee_etude": "12ème année", "garcons": 189, "filles": 190 }
+      ],
+      "par_nationalite": [
+        { "nationalite": "Burundaise",    "effectif": 1385 },
+        { "nationalite": "Congolaise (RDC)", "effectif": 28 },
+        { "nationalite": "Tanzanienne",   "effectif": 7    }
+      ]
+    }
+  ],
+  "par_province": [
+    { "id_province": 1,  "code_type_annee": 14, "total": 285000, "garcons": 143500, "filles": 141500 },
+    { "id_province": 2,  "code_type_annee": 14, "total": 105000, "garcons": 52800,  "filles": 52200  },
+    { "id_province": 3,  "code_type_annee": 14, "total": 118000, "garcons": 59200,  "filles": 58800  },
+    { "id_province": 4,  "code_type_annee": 14, "total": 112000, "garcons": 56100,  "filles": 55900  },
+    { "id_province": 5,  "code_type_annee": 14, "total": 88000,  "garcons": 44200,  "filles": 43800  },
+    { "id_province": 6,  "code_type_annee": 14, "total": 98000,  "garcons": 49200,  "filles": 48800  },
+    { "id_province": 7,  "code_type_annee": 14, "total": 198000, "garcons": 99500,  "filles": 98500  },
+    { "id_province": 8,  "code_type_annee": 14, "total": 92000,  "garcons": 46200,  "filles": 45800  },
+    { "id_province": 9,  "code_type_annee": 14, "total": 125000, "garcons": 62800,  "filles": 62200  },
+    { "id_province": 10, "code_type_annee": 14, "total": 115000, "garcons": 57700,  "filles": 57300  },
+    { "id_province": 11, "code_type_annee": 14, "total": 98000,  "garcons": 49200,  "filles": 48800  },
+    { "id_province": 12, "code_type_annee": 14, "total": 85000,  "garcons": 42700,  "filles": 42300  },
+    { "id_province": 13, "code_type_annee": 14, "total": 128000, "garcons": 64300,  "filles": 63700  },
+    { "id_province": 14, "code_type_annee": 14, "total": 78000,  "garcons": 39200,  "filles": 38800  },
+    { "id_province": 15, "code_type_annee": 14, "total": 168000, "garcons": 84400,  "filles": 83600  },
+    { "id_province": 16, "code_type_annee": 14, "total": 90000,  "garcons": 45200,  "filles": 44800  },
+    { "id_province": 17, "code_type_annee": 14, "total": 95000,  "garcons": 47700,  "filles": 47300  },
+    { "id_province": 18, "code_type_annee": 14, "total": 104000, "garcons": 52300,  "filles": 51700  }
+  ],
+  "synthese_nationale": {
+    "code_type_annee": 14,
+    "taux_scolarisation_net": 96.2,
+    "taux_scolarisation_brut": 103.8,
+    "ratio_filles_garcons": 1.0,
+    "par_nationalite": [
+      { "nationalite": "Burundaise",       "effectif": 2540000 },
+      { "nationalite": "Congolaise (RDC)", "effectif": 25000   },
+      { "nationalite": "Rwandaise",        "effectif": 8000    },
+      { "nationalite": "Tanzanienne",      "effectif": 3200    },
+      { "nationalite": "Autres",           "effectif": 1800    }
+    ],
+    "par_niveau": [
+      { "id_niveau": 1, "libelle": "Préscolaire",     "effectif": 185000,  "garcons": 93000,  "filles": 92000  },
+      { "id_niveau": 2, "libelle": "Fondamental",      "effectif": 2148000, "garcons": 1075000,"filles": 1073000},
+      { "id_niveau": 3, "libelle": "Post-fondamental", "effectif": 245000,  "garcons": 121000, "filles": 124000 }
+    ]
+  }
+}

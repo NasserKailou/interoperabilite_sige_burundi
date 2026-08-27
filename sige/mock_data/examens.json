@@ -1,0 +1,93 @@
+{
+  "sessions": [
+    {
+      "code_type_annee": 14,
+      "libelle_annee": "2028/2029",
+      "examen": "Concours National (fin fondamental — 8e année)",
+      "code_examen": "CN8",
+      "inscrits": 185000,
+      "presents": 181200,
+      "admis": 142500,
+      "taux_participation": 97.9,
+      "taux_reussite": 78.6,
+      "par_sexe": { "garcons_admis": 71000, "filles_admises": 71500, "parite": 1.007 },
+      "par_province": [
+        { "id_province": 1,  "inscrits": 22000, "presents": 21560, "admis": 18340, "taux": 85.1 },
+        { "id_province": 2,  "inscrits": 9500,  "presents": 9310,  "admis": 6952,  "taux": 74.7 },
+        { "id_province": 3,  "inscrits": 10800, "presents": 10584, "admis": 8043,  "taux": 76.0 },
+        { "id_province": 4,  "inscrits": 10200, "presents": 9996,  "admis": 7597,  "taux": 76.0 },
+        { "id_province": 5,  "inscrits": 7800,  "presents": 7644,  "admis": 5581,  "taux": 73.0 },
+        { "id_province": 6,  "inscrits": 8600,  "presents": 8428,  "admis": 6321,  "taux": 75.0 },
+        { "id_province": 7,  "inscrits": 18000, "presents": 17640, "admis": 13832, "taux": 78.4 },
+        { "id_province": 8,  "inscrits": 8100,  "presents": 7938,  "admis": 5956,  "taux": 75.0 },
+        { "id_province": 9,  "inscrits": 11200, "presents": 10976, "admis": 8343,  "taux": 76.0 },
+        { "id_province": 10, "inscrits": 10500, "presents": 10290, "admis": 7832,  "taux": 76.1 },
+        { "id_province": 11, "inscrits": 8800,  "presents": 8624,  "admis": 6558,  "taux": 76.0 },
+        { "id_province": 12, "inscrits": 7500,  "presents": 7350,  "admis": 5565,  "taux": 75.7 },
+        { "id_province": 13, "inscrits": 11400, "presents": 11172, "admis": 8465,  "taux": 75.8 },
+        { "id_province": 14, "inscrits": 7000,  "presents": 6860,  "admis": 5145,  "taux": 75.0 },
+        { "id_province": 15, "inscrits": 15000, "presents": 14700, "admis": 11319, "taux": 77.0 },
+        { "id_province": 16, "inscrits": 8100,  "presents": 7938,  "admis": 5956,  "taux": 75.0 },
+        { "id_province": 17, "inscrits": 8500,  "presents": 8330,  "admis": 6248,  "taux": 75.0 },
+        { "id_province": 18, "inscrits": 9500,  "presents": 9310,  "admis": 7293,  "taux": 78.3 }
+      ]
+    },
+    {
+      "code_type_annee": 14,
+      "libelle_annee": "2028/2029",
+      "examen": "Examen d'État (fin post-fondamental — 12e année)",
+      "code_examen": "ETAT12",
+      "inscrits": 62000,
+      "presents": 60800,
+      "admis": 41200,
+      "taux_participation": 98.1,
+      "taux_reussite": 67.8,
+      "par_sexe": { "garcons_admis": 20800, "filles_admises": 20400, "parite": 0.981 },
+      "par_province": [
+        { "id_province": 1,  "inscrits": 8200,  "presents": 8036,  "admis": 5785,  "taux": 72.0 },
+        { "id_province": 7,  "inscrits": 5800,  "presents": 5684,  "admis": 3921,  "taux": 69.0 },
+        { "id_province": 15, "inscrits": 4800,  "presents": 4704,  "admis": 3152,  "taux": 67.0 }
+      ]
+    },
+    {
+      "code_type_annee": 14,
+      "libelle_annee": "2028/2029",
+      "examen": "Concours d'entrée en 1ère année post-fondamentale",
+      "code_examen": "CEPF",
+      "inscrits": 145200,
+      "presents": 142300,
+      "admis": 98400,
+      "taux_participation": 98.0,
+      "taux_reussite": 69.2,
+      "par_sexe": { "garcons_admis": 48200, "filles_admises": 50200, "parite": 1.041 },
+      "par_province": []
+    }
+  ],
+  "historique": [
+    {
+      "code_type_annee": 10, "libelle": "2024/2025",
+      "CN8": { "inscrits": 165000, "admis": 122100, "taux": 74.0 },
+      "ETAT12": { "inscrits": 54000, "admis": 33750, "taux": 62.5 }
+    },
+    {
+      "code_type_annee": 11, "libelle": "2025/2026",
+      "CN8": { "inscrits": 170000, "admis": 127500, "taux": 75.0 },
+      "ETAT12": { "inscrits": 56000, "admis": 35840, "taux": 64.0 }
+    },
+    {
+      "code_type_annee": 12, "libelle": "2026/2027",
+      "CN8": { "inscrits": 175000, "admis": 133000, "taux": 76.0 },
+      "ETAT12": { "inscrits": 58000, "admis": 37700, "taux": 65.0 }
+    },
+    {
+      "code_type_annee": 13, "libelle": "2027/2028",
+      "CN8": { "inscrits": 180000, "admis": 138600, "taux": 77.0 },
+      "ETAT12": { "inscrits": 60000, "admis": 39600, "taux": 66.0 }
+    },
+    {
+      "code_type_annee": 14, "libelle": "2028/2029",
+      "CN8": { "inscrits": 185000, "admis": 142500, "taux": 78.6 },
+      "ETAT12": { "inscrits": 62000, "admis": 41200, "taux": 67.8 }
+    }
+  ]
+}
