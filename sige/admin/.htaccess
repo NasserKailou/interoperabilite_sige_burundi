@@ -1,0 +1,20 @@
+# ─── SIGE Burundi — Dossier Admin ─────────────────────────────────────────────
+# Sert les fichiers PHP directement, redirige la racine admin/ vers login.php
+# ─────────────────────────────────────────────────────────────────────────────
+
+Options -Indexes
+
+# Fichier d'index par défaut
+DirectoryIndex login.php index.php
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Si le fichier demandé existe directement → le servir tel quel
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule ^ - [L]
+
+    # Si le dossier demandé existe → le servir tel quel
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+</IfModule>

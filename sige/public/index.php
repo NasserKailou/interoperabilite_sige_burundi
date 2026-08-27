@@ -80,7 +80,7 @@ foreach ($annees as $a) {
             <li><a href="#" data-section="carte" onclick="showSection('carte');return false;">
                 <i class="fas fa-map-marked-alt"></i> Carte scolaire
             </a></li>
-            <li><a href="../admin/" class="navbar-admin-link" target="_self">
+            <li><a href="<?= ADMIN_BASE_URL ?>/login.php" class="navbar-admin-link" target="_self">
                 <i class="fas fa-lock"></i> Administration
             </a></li>
         </ul>

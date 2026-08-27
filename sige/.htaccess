@@ -8,13 +8,17 @@ Options -Indexes
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
-    # ── Ne pas rediriger si déjà dans public/ ─────────────────────────────
+    # ── 1. Ne pas rediriger si déjà dans /public/ ─────────────────────────
     RewriteCond %{REQUEST_URI} /public/ [NC]
     RewriteRule ^ - [L]
 
-    # ── Rediriger TOUT vers public/ (réécriture interne, URL inchangée) ───
-    # L'URL visible dans le navigateur reste /sige/...
-    # PHP reçoit /sige/public/... en SCRIPT_NAME → config.php calcule les bons chemins
+    # ── 2. Ne pas rediriger /admin/ ────────────────────────────────────────
+    # sige/admin/ est un vrai dossier Apache, pas sous public/
+    # Sans cette règle, /admin/ serait redirigé vers public/admin/ (inexistant)
+    RewriteCond %{REQUEST_URI} /admin/ [NC]
+    RewriteRule ^ - [L]
+
+    # ── 3. Rediriger TOUT le reste vers public/ ────────────────────────────
     RewriteRule ^(.*)$ public/$1 [L,QSA]
 </IfModule>
 
