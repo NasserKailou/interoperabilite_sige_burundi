@@ -106,8 +106,9 @@ const COLORS = {
 // ─── Navigation et sections ───────────────────────────────────────────────────
 
 function showSection(sectionId) {
+    // Masquer toutes les sections détail et le kanban
     document.querySelectorAll('.detail-section').forEach(s => s.classList.remove('active'));
-    document.getElementById('kanban-section').style.display = 'block';
+    document.getElementById('kanban-section').style.display = 'none';
 
     if (sectionId === 'kanban') {
         document.getElementById('kanban-section').style.display = 'block';
@@ -115,7 +116,6 @@ function showSection(sectionId) {
         return;
     }
 
-    document.getElementById('kanban-section').style.display = 'none';
     const target = document.getElementById(sectionId + '-section');
     if (target) {
         target.classList.add('active');
@@ -126,6 +126,7 @@ function showSection(sectionId) {
             'rh': loadRHDetail,
             'examens': loadExamensDetail,
             'etablissements': loadEtablissementsDetail,
+            // 'carte' : géré par la surcharge dans index.php (initSigeMap)
         };
         if (loaders[sectionId]) loaders[sectionId]();
     }

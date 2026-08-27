@@ -548,7 +548,7 @@ foreach ($annees as $a) {
 </section>
 
 <!-- ─────────────────────────────────── SECTION CARTE ─────────────────────────────────── -->
-<section class="data-section" id="section-carte" style="display:none">
+<section class="detail-section" id="carte-section">
     <div class="section-header">
         <h2><i class="fas fa-map-marked-alt"></i> Carte scolaire du Burundi</h2>
         <p class="section-sub">Localisation géographique des établissements scolaires — Source : Atlas Coline SIGE</p>
@@ -620,7 +620,7 @@ foreach ($annees as $a) {
             <button class="btn-explore" onclick="resetCarteFilters()" style="background:#6c757d">
                 <i class="fas fa-undo"></i> Réinitialiser
             </button>
-            <a id="carte-export-btn" href="api/export.php?module=carte&format=csv" class="btn-explore" style="background:var(--green);text-decoration:none">
+            <a id="carte-export-btn" href="<?= API_BASE_URL ?>/export.php?module=carte&format=csv" class="btn-explore" style="background:var(--green);text-decoration:none">
                 <i class="fas fa-file-csv"></i> Export CSV
             </a>
         </div>
@@ -1120,15 +1120,24 @@ function escapeHtml(s) {
 // Surcharger showSection pour initialiser la carte à la demande
 var _origShowSection = window.showSection;
 window.showSection = function(section) {
+    // Appeler la fonction originale (gère .detail-section active + loaders)
     if (typeof _origShowSection === 'function') _origShowSection(section);
+
+    // Mettre à jour la classe active dans la navbar
+    document.querySelectorAll('.navbar-menu a[data-section]').forEach(function(a) {
+        a.classList.toggle('active', a.dataset.section === section);
+    });
+
+    // Initialiser / rafraîchir la carte Leaflet
     if (section === 'carte') {
         setTimeout(function() {
             if (!SIGE_MAP.initialized) {
                 initSigeMap();
             } else {
+                // La carte existe déjà : recalculer la taille (le div était hidden)
                 SIGE_MAP.map.invalidateSize();
             }
-        }, 150);
+        }, 200);
     }
 };
 </script>
