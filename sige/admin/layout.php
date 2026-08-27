@@ -125,7 +125,7 @@ $activePage = $activePage ?? 'dashboard';
             </a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="../public/" class="nav-link text-muted" style="font-size:.85rem">
+            <a href="<?= PUBLIC_BASE_URL ?: '../public/' ?>" class="nav-link text-muted" style="font-size:.85rem">
                 <i class="fas fa-external-link-alt"></i> Portail public
             </a>
         </li>

@@ -644,7 +644,7 @@ foreach ($annees as $a) {
             <div style="font-weight:600;color:var(--text-primary)">Chargement de la carte…</div>
             <div style="font-size:.8rem;color:var(--text-muted)">683 établissements géolocalisés</div>
         </div>
-        <div id="sige-map" style="height:580px;width:100%"></div>
+        <div id="sige-map" style="height:680px;width:100%"></div>
     </div>
 
     <!-- Tableau résultats carte -->
