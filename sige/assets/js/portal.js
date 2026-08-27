@@ -5,6 +5,11 @@
 
 'use strict';
 
+// ─── Base URL — XAMPP sous-dossier compatible ─────────────────────────────────
+// window.SIGE_BASE est injecté par PHP (PUBLIC_BASE_URL) avant ce script.
+// En mode PHP built-in (localhost:3000), SIGE_BASE vaut '' → les URL restent relatives.
+const BASE = (typeof window !== 'undefined' && window.SIGE_BASE) ? window.SIGE_BASE : '';
+
 // ─── État global ──────────────────────────────────────────────────────────────
 const SIGE = {
     annee: 14,          // Année active (code_type_annee)
@@ -138,7 +143,7 @@ function goBack() {
 
 function loadKanbanSummaries() {
     // Carte Élèves
-    ajax('api/eleves.php', { action: 'synthese' }).then(data => {
+    ajax(BASE + '/api/eleves.php', { action: 'synthese' }).then(data => {
         document.getElementById('k-eleves-total').textContent   = fmtNum(data.total);
         document.getElementById('k-eleves-filles').textContent  = fmtPct(data.pct_filles, 1);
         document.getElementById('k-eleves-garcons').textContent = fmtPct(data.pct_garcons, 1);
@@ -146,21 +151,21 @@ function loadKanbanSummaries() {
     }).catch(console.error);
 
     // Carte RH
-    ajax('api/rh.php', { action: 'synthese' }).then(data => {
+    ajax(BASE + '/api/rh.php', { action: 'synthese' }).then(data => {
         document.getElementById('k-rh-total').textContent = fmtNum(data.total_personnel);
         document.getElementById('k-rh-ratio').textContent = data.ratio + ' élèves/enseignant';
         drawSparkline('sparkline-rh', data.evolution, COLORS.green);
     }).catch(console.error);
 
     // Carte Examens
-    ajax('api/examens.php', { action: 'synthese' }).then(data => {
+    ajax(BASE + '/api/examens.php', { action: 'synthese' }).then(data => {
         document.getElementById('k-exam-taux').textContent = fmtPct(data.taux_reussite_cn8);
         document.getElementById('k-exam-admis').textContent = fmtNum(data.admis_cn8) + ' admis';
         drawSparkline('sparkline-examens', data.evolution_taux, COLORS.red);
     }).catch(console.error);
 
     // Carte Établissements
-    ajax('api/etablissements.php', { action: 'synthese' }).then(data => {
+    ajax(BASE + '/api/etablissements.php', { action: 'synthese' }).then(data => {
         document.getElementById('k-etab-total').textContent  = fmtNum(data.total);
         document.getElementById('k-etab-public').textContent = fmtNum(data.public) + ' publics';
         document.getElementById('k-etab-rural').textContent  = fmtNum(data.rural) + ' ruraux';
@@ -203,7 +208,7 @@ function drawSparkline(canvasId, values, color) {
 // ─── KPI Band ─────────────────────────────────────────────────────────────────
 
 function loadKPIs() {
-    ajax('api/kpi.php').then(data => {
+    ajax(BASE + '/api/kpi.php').then(data => {
         const kpis = [
             { id: 'kpi-etab',    val: data.etablissements, label: 'Établissements',    decimals: 0 },
             { id: 'kpi-eleves',  val: data.eleves,         label: 'Élèves scolarisés', decimals: 0 },
@@ -234,7 +239,7 @@ function loadElevesDetail() {
     showLoading('eleves-charts');
     showLoading('eleves-table-body');
 
-    ajax('api/eleves.php', { action: 'detail' }).then(data => {
+    ajax(BASE + '/api/eleves.php', { action: 'detail' }).then(data => {
         // Stats cards
         document.getElementById('eleves-stats').innerHTML = `
             <div class="stat-card">
@@ -367,7 +372,7 @@ function loadRHDetail() {
     showLoading('rh-charts');
     showLoading('rh-table-body');
 
-    ajax('api/rh.php', { action: 'detail' }).then(data => {
+    ajax(BASE + '/api/rh.php', { action: 'detail' }).then(data => {
         document.getElementById('rh-stats').innerHTML = `
             <div class="stat-card">
                 <div class="stat-card-icon green"><i class="fas fa-chalkboard-teacher"></i></div>
@@ -477,7 +482,7 @@ function loadExamensDetail() {
     showLoading('examens-charts');
     showLoading('examens-table-body');
 
-    ajax('api/examens.php', { action: 'detail' }).then(data => {
+    ajax(BASE + '/api/examens.php', { action: 'detail' }).then(data => {
         // Cards sessions
         document.getElementById('examens-sessions').innerHTML = data.sessions.map(s => `
             <div class="stat-card" style="flex-direction:column;align-items:flex-start;gap:.5rem">
@@ -557,7 +562,7 @@ function loadEtablissementsDetail() {
     showLoading('etab-charts');
     showLoading('etab-table-body');
 
-    ajax('api/etablissements.php', { action: 'detail' }).then(data => {
+    ajax(BASE + '/api/etablissements.php', { action: 'detail' }).then(data => {
         document.getElementById('etab-stats').innerHTML = `
             <div class="stat-card">
                 <div class="stat-card-icon blue"><i class="fas fa-school"></i></div>

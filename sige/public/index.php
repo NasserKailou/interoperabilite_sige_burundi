@@ -26,7 +26,7 @@ foreach ($annees as $a) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <!-- CSS portail -->
-    <link rel="stylesheet" href="/assets/css/portal.css">
+    <link rel="stylesheet" href="<?= ASSETS_BASE_URL ?>/css/portal.css">
 
     <style>
         body { font-family: 'Nunito', 'Segoe UI', Arial, sans-serif; }
@@ -727,7 +727,8 @@ foreach ($annees as $a) {
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
 <script src="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
-<script src="/assets/js/portal.js"></script>
+<script>window.SIGE_BASE = '<?= PUBLIC_BASE_URL ?>';</script>
+<script src="<?= ASSETS_BASE_URL ?>/js/portal.js"></script>
 
 <script>
 // Surcharge de loadEtablissementsDetail pour intégrer les filtres UI de la page
@@ -742,7 +743,7 @@ function loadEtablissementsDetail() {
     showLoading('etab-stats');
     showLoading('etab-charts');
     showLoading('etab-table-body');
-    ajax('api/etablissements.php', params).then(data => {
+    ajax((window.SIGE_BASE||'') + '/api/etablissements.php', params).then(data => {
         // Réutiliser la logique du portal.js
         const s = data.synthese;
         document.getElementById('etab-stats').innerHTML = `
@@ -885,7 +886,7 @@ function createMarkerIcon(color, milieu) {
 // Charger les données GeoJSON depuis l'API
 function loadCarteData() {
     var params = buildCarteParams();
-    var url = 'api/carte.php?format=geojson&' + new URLSearchParams(params).toString();
+    var url = (window.SIGE_BASE||'') + '/api/carte.php?format=geojson&' + new URLSearchParams(params).toString();
 
     fetch(url)
         .then(r => r.json())
@@ -907,7 +908,7 @@ function loadCarteData() {
         });
 
     // Charger les stats pour les filtres et KPIs
-    fetch('api/carte.php?format=stats')
+    fetch((window.SIGE_BASE||'') + '/api/carte.php?format=stats')
         .then(r => r.json())
         .then(stats => {
             // KPIs
@@ -1077,12 +1078,12 @@ function buildCarteParams() {
 function applyCarteFilters() {
     if (!SIGE_MAP.initialized) return;
     var params = buildCarteParams();
-    var url = 'api/carte.php?format=geojson&' + new URLSearchParams(params).toString();
+    var url = (window.SIGE_BASE||'') + '/api/carte.php?format=geojson&' + new URLSearchParams(params).toString();
 
     // Mise à jour lien export
     var exportBtn = document.getElementById('carte-export-btn');
     if (exportBtn) {
-        exportBtn.href = 'api/export.php?module=carte&format=csv&' + new URLSearchParams(params).toString();
+        exportBtn.href = (window.SIGE_BASE||'') + '/api/export.php?module=carte&format=csv&' + new URLSearchParams(params).toString();
     }
 
     fetch(url)

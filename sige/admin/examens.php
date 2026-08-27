@@ -57,11 +57,11 @@ require_once 'layout.php';
                         </div>
                         <div class="col-md-3"></div>
                         <div class="col-md-3 text-right mt-2 mt-md-0">
-                            <a href="/api/export.php?module=examens&annee=<?= $anneeId ?>&format=csv" id="btn-export-csv"
+                            <a href="<?= API_BASE_URL ?>/export.php?module=examens&annee=<?= $anneeId ?>&format=csv" id="btn-export-csv"
                                class="btn btn-sm btn-success mr-1">
                                 <i class="fas fa-file-csv"></i> CSV
                             </a>
-                            <a href="/api/export.php?module=examens&annee=<?= $anneeId ?>&format=excel" id="btn-export-excel"
+                            <a href="<?= API_BASE_URL ?>/export.php?module=examens&annee=<?= $anneeId ?>&format=excel" id="btn-export-excel"
                                class="btn btn-sm btn-info">
                                 <i class="fas fa-file-excel"></i> Excel
                             </a>
@@ -177,11 +177,12 @@ function showTab(type) {
 
 function loadExamens() {
     var annee = document.getElementById('filter-annee').value;
-    document.getElementById('btn-export-csv').href   = '/api/export.php?module=examens&annee=' + annee + '&format=csv';
-    document.getElementById('btn-export-excel').href = '/api/export.php?module=examens&annee=' + annee + '&format=excel';
+    var API = '<?= API_BASE_URL ?>';
+    document.getElementById('btn-export-csv').href   = API + '/export.php?module=examens&annee=' + annee + '&format=csv';
+    document.getElementById('btn-export-excel').href = API + '/export.php?module=examens&annee=' + annee + '&format=excel';
     document.getElementById('examens-tbody').innerHTML = '<tr><td colspan="5" class="text-center py-3"><i class="fas fa-spinner fa-spin"></i> Chargement…</td></tr>';
 
-    fetch('/api/examens.php?action=detail&annee=' + annee, {
+    fetch('<?= API_BASE_URL ?>/examens.php?action=detail&annee=' + annee, {
         headers: { 'X-Requested-With': 'XMLHttpRequest' }
     })
     .then(r => r.json())

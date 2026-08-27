@@ -1,0 +1,23 @@
+# ─── SIGE Burundi — Racine du projet ──────────────────────────────────────────
+# Redirection interne : http://.../sige/ → http://.../sige/public/index.php
+# Compatible XAMPP + Apache 2.4 (mod_rewrite requis, AllowOverride All)
+# ─────────────────────────────────────────────────────────────────────────────
+
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # ── Ne pas rediriger si déjà dans public/ ─────────────────────────────
+    RewriteCond %{REQUEST_URI} /public/ [NC]
+    RewriteRule ^ - [L]
+
+    # ── Rediriger TOUT vers public/ (réécriture interne, URL inchangée) ───
+    # L'URL visible dans le navigateur reste /sige/...
+    # PHP reçoit /sige/public/... en SCRIPT_NAME → config.php calcule les bons chemins
+    RewriteRule ^(.*)$ public/$1 [L,QSA]
+</IfModule>
+
+# ─── Fallback si mod_rewrite désactivé ────────────────────────────────────────
+# Activer la ligne ci-dessous uniquement si mod_rewrite est absent :
+# DirectoryIndex public/index.php

@@ -67,15 +67,15 @@ require_once 'layout.php';
                             <input type="text" id="filter-search" class="form-control form-control-sm mt-1" placeholder="Nom d'établissement…" oninput="loadEtablissements()">
                         </div>
                         <div class="col-md-3 text-right mt-2 mt-md-0">
-                            <a href="/api/export.php?module=etablissements&annee=<?= $anneeId ?>&format=csv" id="btn-export-csv"
+                            <a href="<?= API_BASE_URL ?>/export.php?module=etablissements&annee=<?= $anneeId ?>&format=csv" id="btn-export-csv"
                                class="btn btn-sm btn-success mr-1">
                                 <i class="fas fa-file-csv"></i> CSV
                             </a>
-                            <a href="/api/export.php?module=etablissements&annee=<?= $anneeId ?>&format=excel" id="btn-export-excel"
+                            <a href="<?= API_BASE_URL ?>/export.php?module=etablissements&annee=<?= $anneeId ?>&format=excel" id="btn-export-excel"
                                class="btn btn-sm btn-info">
                                 <i class="fas fa-file-excel"></i> Excel
                             </a>
-                            <a href="/api/export.php?module=carte&format=csv" class="btn btn-sm btn-secondary ml-1" title="Export GPS">
+                            <a href="<?= API_BASE_URL ?>/export.php?module=carte&format=csv" class="btn btn-sm btn-secondary ml-1" title="Export GPS">
                                 <i class="fas fa-map-pin"></i> GPS CSV
                             </a>
                         </div>
@@ -224,13 +224,14 @@ function _doLoad() {
     var secteur = document.getElementById('filter-secteur').value;
     var search  = document.getElementById('filter-search').value;
 
-    document.getElementById('btn-export-csv').href   = '/api/export.php?module=etablissements&annee=' + annee + '&format=csv';
-    document.getElementById('btn-export-excel').href = '/api/export.php?module=etablissements&annee=' + annee + '&format=excel';
+    var API = '<?= API_BASE_URL ?>';
+    document.getElementById('btn-export-csv').href   = API + '/export.php?module=etablissements&annee=' + annee + '&format=csv';
+    document.getElementById('btn-export-excel').href = API + '/export.php?module=etablissements&annee=' + annee + '&format=excel';
     document.getElementById('etab-tbody').innerHTML = '<tr><td colspan="9" class="text-center py-3"><i class="fas fa-spinner fa-spin"></i> Chargement…</td></tr>';
 
     var qs = new URLSearchParams({ action: 'detail', annee, province, secteur, search });
 
-    fetch('/api/etablissements.php?' + qs.toString(), {
+    fetch('<?= API_BASE_URL ?>/etablissements.php?' + qs.toString(), {
         headers: { 'X-Requested-With': 'XMLHttpRequest' }
     })
     .then(r => r.json())
