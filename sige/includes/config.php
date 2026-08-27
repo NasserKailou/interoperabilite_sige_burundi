@@ -87,7 +87,8 @@ define('DB_CHARSET', 'utf8mb4');
 // ─── Endpoints API réelles (utilisés uniquement si DATA_SOURCE_MODE = 'api') ─
 // POINT DE BRANCHEMENT API : remplacer les URL vides par les vrais endpoints
 define('API_ENDPOINTS', [
-    'statEduc'    => '',  // ex: 'https://api.statEduc.bi/v1'
+    'iue'         => '',  // ex: 'https://api.iue.bi/v1'          ← Identification Unique des Élèves
+    'statEduc'    => '',  // ex: 'https://api.statEduc.bi/v1'     ← agrège les données IUE
     'sige_rh'     => '',  // ex: 'https://api.sige-rh.bi/v1'
     'examens'     => '',  // ex: 'https://api.examens.bi/v1'
     'carte'       => '',  // ex: 'https://api.carte-scolaire.bi/v1'
@@ -97,6 +98,7 @@ define('API_ENDPOINTS', [
 // ─── Tokens API (pour les connexions API réelles) ───────────────────────────
 // POINT DE BRANCHEMENT API : renseigner les tokens d'authentification
 define('API_TOKENS', [
+    'iue'         => '',  // Token d'accès au registre IUE
     'statEduc'    => '',
     'sige_rh'     => '',
     'examens'     => '',

@@ -162,7 +162,7 @@ foreach ($annees as $a) {
             Tableau de bord — Année <span id="year-label"><?= e($anneeLibelle) ?></span>
         </h3>
         <div class="data-source-badge mock">
-            <i class="fas fa-database"></i> StatEduc · SIGE-RH · Examens · Carte scolaire
+            <i class="fas fa-id-card"></i> IUE · StatEduc · SIGE-RH · Examens · Carte scolaire
         </div>
     </div>
 
@@ -171,7 +171,7 @@ foreach ($annees as $a) {
         <div class="kanban-card blue" onclick="showSection('eleves')" role="button" tabindex="0">
             <div class="kanban-header">
                 <span class="kanban-title"><i class="fas fa-users" style="color:var(--blue)"></i> Données des élèves</span>
-                <span class="kanban-badge">StatEduc</span>
+                <span class="kanban-badge" title="Données agrégées depuis l'IUE par StatEduc">IUE → StatEduc</span>
             </div>
             <div class="kanban-body">
                 <div class="kanban-stat">
@@ -302,7 +302,7 @@ foreach ($annees as $a) {
             <p style="color:var(--gray-600);font-size:.88rem;line-height:1.8;margin-bottom:.75rem">
                 Le <strong>Système d'Interopérabilité du SIGE</strong> est la plateforme centrale qui fait communiquer 
                 les quatre systèmes d'information du secteur éducatif burundais : 
-                <strong>StatEduc</strong> (recensement scolaire), <strong>SIGE-RH</strong> (ressources humaines), 
+                <strong>IUE</strong> (identification unique des élèves — source primaire), <strong>StatEduc</strong> (recensement), <strong>SIGE-RH</strong> (ressources humaines), 
                 le système <strong>Examens &amp; concours</strong> et la <strong>Carte scolaire</strong>.
             </p>
             <p style="color:var(--gray-600);font-size:.88rem;line-height:1.8">
@@ -350,7 +350,7 @@ foreach ($annees as $a) {
             <i class="fas fa-users" style="color:var(--blue)"></i>
             Données des élèves — StatEduc
         </h2>
-        <div class="data-source-badge mock"><i class="fas fa-database"></i> StatEduc</div>
+        <div class="data-source-badge mock"><i class="fas fa-id-card"></i> IUE → StatEduc</div>
     </div>
 
     <div class="filter-bar">
@@ -689,7 +689,7 @@ foreach ($annees as $a) {
                 </div>
             </div>
             <p>Plateforme d'interopérabilité du Système d'Information pour la Gestion de l'Éducation 
-            de la République du Burundi. Données issues de StatEduc, SIGE-RH, Examens &amp; Carte scolaire.</p>
+            de la République du Burundi. Données issues de l'IUE, StatEduc, SIGE-RH, Examens &amp; Carte scolaire.</p>
         </div>
         <div class="footer-section">
             <h5>Navigation</h5>

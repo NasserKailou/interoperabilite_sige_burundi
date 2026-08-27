@@ -23,6 +23,14 @@ foreach ($sessionsExam as $s) {
 }
 
 $statusConnecteur = $connector->testConnexion();
+
+// Charger les statistiques IUE depuis le mock
+$iueStats = [];
+$iueFile  = MOCK_DATA_PATH . '/iue.json';
+if (file_exists($iueFile)) {
+    $iueData  = json_decode(file_get_contents($iueFile), true) ?? [];
+    $iueStats = $iueData['statistiques_globales'] ?? [];
+}
 ?>
 
 <!-- ─── Alertes mode mock ─── -->
@@ -32,6 +40,34 @@ $statusConnecteur = $connector->testConnexion();
     <strong>Mode démo actif :</strong> Les données proviennent des fichiers JSON mockés (<code>mock_data/</code>).
     Pour brancher les API réelles, modifier <code>DATA_SOURCE_MODE</code> dans <code>includes/config.php</code>.
     <button type="button" class="close" data-dismiss="alert">×</button>
+</div>
+<?php endif; ?>
+
+<!-- ─── Bandeaux IUE ─── -->
+<?php if ($iueStats): ?>
+<div class="row mb-2">
+    <div class="col-12">
+        <div class="alert alert-info mb-2" style="border-radius:10px;border:none;border-left:4px solid #00897b;background:#e0f2f1">
+            <div class="d-flex align-items-center flex-wrap gap-3">
+                <div class="mr-3">
+                    <i class="fas fa-id-card" style="color:#00897b;font-size:1.4rem"></i>
+                </div>
+                <div class="flex-grow-1">
+                    <strong style="color:#00695c"><i class="fas fa-circle" style="font-size:.5rem;vertical-align:middle"></i> IUE — Identification Unique des Élèves</strong>
+                    <span class="badge ml-2" style="background:#00897b20;color:#00695c;font-size:.65rem">SOURCE PRIMAIRE</span>
+                    <div style="font-size:.82rem;color:#00695c;margin-top:2px">
+                        <?= number_format($iueStats['total_eleves_enregistres'], 0, ',', ' ') ?> élèves enregistrés &bull;
+                        Couverture NID : <strong><?= number_format($iueStats['taux_couverture_nid'], 1, ',', '.') ?> %</strong>
+                        &bull; <?= number_format($iueStats['sans_nid'], 0, ',', ' ') ?> sans NID &bull;
+                        Sync : <?= date('d/m/Y', strtotime($iueStats['derniere_synchronisation'])) ?>
+                    </div>
+                </div>
+                <a href="connecteurs.php" class="btn btn-sm" style="background:#00897b;color:white;border-radius:8px;white-space:nowrap">
+                    <i class="fas fa-plug mr-1"></i> Gérer connecteurs
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
 <?php endif; ?>
 
@@ -140,24 +176,31 @@ $statusConnecteur = $connector->testConnexion();
             <div class="card-body p-0">
                 <?php
                 $connecteurConfig = [
-                    ['StatEduc (recensement scolaire)', 'fas fa-database', 'mock'],
-                    ['SIGE-RH (ressources humaines)',   'fas fa-users-cog', 'mock'],
-                    ['Examens & concours',              'fas fa-file-alt',  'mock'],
-                    ['Carte scolaire',                  'fas fa-map-marked-alt', 'mock'],
+                    ['IUE — Identification Unique des Élèves', 'fas fa-id-card',        'mock', '#00897b', true],
+                    ['StatEduc (recensement scolaire)',         'fas fa-database',       'mock', '#1e88e5', false],
+                    ['SIGE-RH (ressources humaines)',           'fas fa-users-cog',      'mock', '#43a047', false],
+                    ['Examens & concours',                      'fas fa-file-alt',       'mock', '#e53935', false],
+                    ['Carte scolaire',                          'fas fa-map-marked-alt', 'mock', '#fb8c00', false],
                 ];
-                foreach ($connecteurConfig as [$nom, $icon, $mode]):
+                foreach ($connecteurConfig as [$nom, $icon, $mode, $couleur, $isPrimaire]):
                 ?>
-                <div class="d-flex align-items-center px-3 py-2 border-bottom">
-                    <div style="width:36px;height:36px;background:#e3f2fd;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#1e88e5;flex-shrink:0">
+                <div class="d-flex align-items-center px-3 py-2 border-bottom<?= $isPrimaire ? ' font-weight-bold' : '' ?>"
+                     style="<?= $isPrimaire ? 'background:#f0fdfb' : '' ?>">
+                    <div style="width:36px;height:36px;background:<?= e($couleur) ?>18;border-radius:8px;display:flex;align-items:center;justify-content:center;color:<?= e($couleur) ?>;flex-shrink:0<?= $isPrimaire ? ';border:1.5px solid '.e($couleur) : '' ?>">
                         <i class="<?= $icon ?>"></i>
                     </div>
                     <div class="ml-3 flex-grow-1">
-                        <div style="font-weight:700;font-size:.88rem"><?= e($nom) ?></div>
-                        <div style="font-size:.75rem;color:#9aa0a6">JSON local &bull; mock_data/</div>
+                        <div style="font-weight:700;font-size:.85rem">
+                            <?= e($nom) ?>
+                            <?php if ($isPrimaire): ?>
+                            <span class="badge ml-1" style="background:<?= e($couleur) ?>20;color:<?= e($couleur) ?>;font-size:.58rem">SOURCE PRIMAIRE</span>
+                            <?php endif; ?>
+                        </div>
+                        <div style="font-size:.73rem;color:#9aa0a6">JSON local &bull; mock_data/</div>
                     </div>
                     <div class="connector-status">
                         <div class="dot green"></div>
-                        <span class="badge badge-sige-mock rounded-pill px-2">ACTIF — mock</span>
+                        <span class="badge badge-sige-mock rounded-pill px-2">ACTIF</span>
                     </div>
                 </div>
                 <?php endforeach; ?>

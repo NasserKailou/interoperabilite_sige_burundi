@@ -106,8 +106,10 @@ class Auth
 
     /**
      * Protège une page admin — redirige si non connecté
+     * Si $redirect est relatif (ex: 'login.php'), redirige en relatif depuis le dossier admin/
+     * Si $redirect est absolu (commence par /), il est utilisé tel quel
      */
-    public static function requireLogin(string $redirect = '/admin/login.php'): void
+    public static function requireLogin(string $redirect = 'login.php'): void
     {
         self::startSession();
         if (!self::isLoggedIn()) {
@@ -117,12 +119,19 @@ class Auth
 
     /**
      * Vérifie si l'utilisateur a un rôle suffisant
+     * Redirige vers dashboard.php (relatif) ou vers ADMIN_BASE_URL si défini
      */
-    public static function requireRole(string $minRole, string $redirect = '/admin/dashboard.php'): void
+    public static function requireRole(string $minRole, string $redirect = ''): void
     {
         $roles = ['lecteur' => 1, 'editeur' => 2, 'admin' => 3, 'superadmin' => 4];
         $user  = self::currentUser();
         if (!$user || ($roles[$user['role']] ?? 0) < ($roles[$minRole] ?? 99)) {
+            // Utiliser ADMIN_BASE_URL si disponible (mode Apache/XAMPP), sinon relatif
+            if ($redirect === '') {
+                $redirect = defined('ADMIN_BASE_URL')
+                    ? ADMIN_BASE_URL . '/dashboard.php'
+                    : 'dashboard.php';
+            }
             redirect($redirect . '?error=access_denied');
         }
     }

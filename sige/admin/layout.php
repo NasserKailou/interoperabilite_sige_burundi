@@ -70,8 +70,18 @@ $activePage = $activePage ?? 'dashboard';
             box-shadow: 0 2px 8px rgba(0,0,0,.08) !important;
         }
         .main-header .nav-link { color: #3c4043 !important; }
-        /* ── Content ── */
-        .content-wrapper { background: #f8f9fa !important; }
+        /* ── Layout fixe — borner la hauteur ── */
+        html, body { height: 100%; }
+        .wrapper { height: auto !important; min-height: 100%; }
+        /* content-wrapper doit scroller librement, pas s'étirer indéfiniment */
+        .content-wrapper {
+            background: #f8f9fa !important;
+            min-height: unset !important;
+            height: auto !important;
+            overflow-y: visible !important;
+        }
+        /* AdminLTE layout-fixed surcharge — on neutralise le height:calc() */
+        body.layout-fixed .content-wrapper { height: auto !important; overflow: visible !important; }
         .content-header h1 { font-size: 1.3rem !important; font-weight: 800 !important; color: #3c4043; }
         .content-header .breadcrumb { background: transparent !important; }
         /* ── Cards ── */
@@ -113,7 +123,7 @@ $activePage = $activePage ?? 'dashboard';
         }
     </style>
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini">
 <div class="wrapper">
 
 <!-- ─── NAVBAR ─── -->
@@ -226,13 +236,22 @@ $activePage = $activePage ?? 'dashboard';
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="../public/index.php#carte" class="nav-link" target="_blank">
+                    <a href="<?= PUBLIC_BASE_URL ?: '../public' ?>/#carte" class="nav-link" target="_blank">
                         <i class="nav-icon fas fa-map-marked-alt"></i>
                         <p>Carte scolaire <i class="fas fa-external-link-alt fa-xs ml-1 opacity-75"></i></p>
                     </a>
                 </li>
 
                 <li class="nav-header">INTEROPÉRABILITÉ</li>
+                <li class="nav-item">
+                    <a href="connecteurs.php#iue" class="nav-link <?= $activePage === 'iue' ? 'active' : '' ?>"
+                       style="<?= $activePage === 'iue' ? '' : 'color:rgba(255,255,255,.9)!important' ?>">
+                        <i class="nav-icon fas fa-id-card" style="color:rgba(102,230,210,.9)"></i>
+                        <p>IUE — Élèves
+                            <span class="badge right" style="background:rgba(102,230,210,.2);color:#80cbc4;font-size:.6rem">SOURCE</span>
+                        </p>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a href="connecteurs.php" class="nav-link <?= $activePage === 'connecteurs' ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-plug"></i>

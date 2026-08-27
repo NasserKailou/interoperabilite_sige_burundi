@@ -18,7 +18,35 @@ $pageTitle  = 'Données Élèves';
 $pageIcon   = 'fas fa-users';
 $activePage = 'eleves';
 require_once 'layout.php';
+
+// Charger stats IUE pour la note de source
+$iueFile  = MOCK_DATA_PATH . '/iue.json';
+$iueStats = [];
+if (file_exists($iueFile)) {
+    $iueRaw   = json_decode(file_get_contents($iueFile), true) ?? [];
+    $iueStats = $iueRaw['statistiques_globales'] ?? [];
+}
 ?>
+
+<!-- ─── Bandeau source IUE ─── -->
+<div class="alert mb-3 py-2" style="border-radius:10px;border:none;border-left:4px solid #00897b;background:#e0f2f1">
+    <div class="d-flex align-items-center flex-wrap gap-2">
+        <i class="fas fa-id-card" style="color:#00897b;font-size:1.1rem;margin-right:.5rem"></i>
+        <div class="flex-grow-1" style="font-size:.83rem">
+            <strong style="color:#00695c">Source : IUE — Identification Unique des Élèves</strong>
+            <span class="badge ml-1" style="background:#00897b20;color:#00695c;font-size:.62rem">SOURCE PRIMAIRE</span>
+            <?php if ($iueStats): ?>
+            &nbsp;·&nbsp; <?= number_format($iueStats['total_eleves_enregistres'], 0, ',', ' ') ?> élèves enregistrés
+            &nbsp;·&nbsp; Couverture NID : <strong style="color:#00695c"><?= number_format($iueStats['taux_couverture_nid'], 1, ',', '.') ?> %</strong>
+            &nbsp;·&nbsp; Sync : <?= date('d/m/Y', strtotime($iueStats['derniere_synchronisation'])) ?>
+            <?php endif; ?>
+            &nbsp;·&nbsp; <em style="color:#555">StatEduc agrège les données IUE pour le recensement scolaire annuel</em>
+        </div>
+        <a href="connecteurs.php#iue" class="btn btn-sm" style="background:#00897b;color:white;border-radius:6px;font-size:.78rem;white-space:nowrap">
+            <i class="fas fa-plug mr-1"></i> Connecteur IUE
+        </a>
+    </div>
+</div>
 
             <!-- Filtres -->
             <div class="card card-outline card-primary mb-4">

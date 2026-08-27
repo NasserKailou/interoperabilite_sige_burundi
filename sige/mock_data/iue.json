@@ -1,0 +1,86 @@
+{
+  "_description": "Système d'Identification Unique des Élèves du Burundi (IUE) — Registre national",
+  "_note": "Source primaire : toutes les données élèves de StatEduc sont agrégées depuis l'IUE. Ce fichier est une simulation du registre.",
+
+  "statistiques_globales": {
+    "total_eleves_enregistres": 2578000,
+    "avec_nid": 2341000,
+    "sans_nid": 237000,
+    "taux_couverture_nid": 90.8,
+    "nouveaux_enregistrements_annee": 142000,
+    "derniere_synchronisation": "2029-03-15T08:00:00Z"
+  },
+
+  "flux_donnees": {
+    "description": "L'IUE est la source primaire des données élèves. StatEduc agrège ces données pour produire les statistiques scolaires.",
+    "schema": [
+      { "etape": 1, "systeme": "IUE", "role": "Registre national — attribue le NID à chaque élève à la naissance ou à la première inscription" },
+      { "etape": 2, "systeme": "Établissements scolaires", "role": "Saisissent les inscriptions avec le NID de l'élève" },
+      { "etape": 3, "systeme": "StatEduc", "role": "Agrège et valide les données IUE pour le recensement scolaire annuel" },
+      { "etape": 4, "systeme": "SIGE Interopérabilité", "role": "Expose les données consolidées aux autres systèmes" }
+    ]
+  },
+
+  "repartition_par_cycle": [
+    { "cycle": "Préscolaire",        "code": "PRE", "effectif": 98000,   "avec_nid": 82000,   "taux_couverture": 83.7 },
+    { "cycle": "Fondamental 1 (1-5)","code": "F1",  "effectif": 1120000, "avec_nid": 1032000, "taux_couverture": 92.1 },
+    { "cycle": "Fondamental 2 (6-9)","code": "F2",  "effectif": 890000,  "avec_nid": 818000,  "taux_couverture": 91.9 },
+    { "cycle": "Post-fondamental",   "code": "PF",  "effectif": 320000,  "avec_nid": 289000,  "taux_couverture": 90.3 },
+    { "cycle": "Secondaire général", "code": "SG",  "effectif": 110000,  "avec_nid": 96000,   "taux_couverture": 87.3 },
+    { "cycle": "Technique & prof.",  "code": "TP",  "effectif": 40000,   "avec_nid": 24000,   "taux_couverture": 60.0 }
+  ],
+
+  "repartition_par_genre": {
+    "garcons": 1289000, "filles": 1289000,
+    "indice_parite": 1.00,
+    "avec_nid_garcons": 1063000, "avec_nid_filles": 1278000
+  },
+
+  "repartition_par_province": [
+    { "province": "Bujumbura Mairie", "id": 1,  "effectif": 218000, "avec_nid": 205000, "taux": 94.0 },
+    { "province": "Bujumbura Rural",  "id": 2,  "effectif": 185000, "avec_nid": 170000, "taux": 91.9 },
+    { "province": "Gitega",           "id": 3,  "effectif": 312000, "avec_nid": 282000, "taux": 90.4 },
+    { "province": "Ngozi",            "id": 4,  "effectif": 198000, "avec_nid": 178000, "taux": 89.9 },
+    { "province": "Muyinga",          "id": 5,  "effectif": 176000, "avec_nid": 157000, "taux": 89.2 },
+    { "province": "Kayanza",          "id": 6,  "effectif": 162000, "avec_nid": 145000, "taux": 89.5 },
+    { "province": "Bubanza",          "id": 7,  "effectif": 89000,  "avec_nid": 79000,  "taux": 88.8 },
+    { "province": "Cibitoke",         "id": 8,  "effectif": 94000,  "avec_nid": 83000,  "taux": 88.3 },
+    { "province": "Muramvya",         "id": 9,  "effectif": 78000,  "avec_nid": 70000,  "taux": 89.7 },
+    { "province": "Mwaro",            "id": 10, "effectif": 64000,  "avec_nid": 58000,  "taux": 90.6 },
+    { "province": "Makamba",          "id": 11, "effectif": 98000,  "avec_nid": 88000,  "taux": 89.8 },
+    { "province": "Rutana",           "id": 12, "effectif": 72000,  "avec_nid": 64000,  "taux": 88.9 },
+    { "province": "Ruyigi",           "id": 13, "effectif": 86000,  "avec_nid": 76000,  "taux": 88.4 },
+    { "province": "Cankuzo",          "id": 14, "effectif": 52000,  "avec_nid": 45000,  "taux": 86.5 },
+    { "province": "Bururi",           "id": 15, "effectif": 115000, "avec_nid": 104000, "taux": 90.4 },
+    { "province": "Rumonge",          "id": 16, "effectif": 93000,  "avec_nid": 83000,  "taux": 89.2 },
+    { "province": "Kirundo",          "id": 17, "effectif": 186000, "avec_nid": 164000, "taux": 88.2 }
+  ],
+
+  "evolution_couverture": [
+    { "annee": "2024/2025", "taux_couverture": 86.2, "total_enregistres": 2368000, "avec_nid": 2041000 },
+    { "annee": "2025/2026", "taux_couverture": 87.8, "total_enregistres": 2412000, "avec_nid": 2118000 },
+    { "annee": "2026/2027", "taux_couverture": 88.9, "total_enregistres": 2450000, "avec_nid": 2178000 },
+    { "annee": "2027/2028", "taux_couverture": 89.7, "total_enregistres": 2510000, "avec_nid": 2252000 },
+    { "annee": "2028/2029", "taux_couverture": 90.8, "total_enregistres": 2578000, "avec_nid": 2341000 }
+  ],
+
+  "alertes": [
+    { "niveau": "warning", "message": "237 000 élèves sans NID — campagne d'enrôlement en cours", "modules": ["eleves", "etablissements"] },
+    { "niveau": "info",    "message": "Taux de couverture NID : 90,8 % (objectif 2030 : 100 %)",  "modules": ["dashboard"] },
+    { "niveau": "success", "message": "Synchronisation IUE→StatEduc : dernier transfert 15/03/2029", "modules": ["connecteurs"] }
+  ],
+
+  "endpoint_api": {
+    "base_url": "",
+    "version": "v1",
+    "authentification": "Bearer token (JWT)",
+    "endpoints_disponibles": [
+      { "methode": "GET", "chemin": "/eleves/{nid}",          "description": "Fiche individuelle d'un élève par NID" },
+      { "methode": "GET", "chemin": "/eleves/synthese",        "description": "Statistiques agrégées (par cycle, province, genre)" },
+      { "methode": "GET", "chemin": "/eleves/province/{id}",   "description": "Élèves d'une province avec taux de couverture" },
+      { "methode": "GET", "chemin": "/eleves/inscriptions",    "description": "Inscriptions actives par établissement et année" },
+      { "methode": "POST", "chemin": "/eleves/enroll",         "description": "Enrôlement d'un nouvel élève (attribution NID)" },
+      { "methode": "PUT", "chemin": "/eleves/{nid}/transfert", "description": "Transfert inter-établissement" }
+    ]
+  }
+}

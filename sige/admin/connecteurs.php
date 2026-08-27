@@ -37,17 +37,30 @@ $csrf = csrf_token();
 </div>
 
 <!-- ─── Cartes connecteurs ─── -->
-<div class="row">
+<div class="row" id="connecteurs-liste">
 <?php
 $connecteursConfig = [
     [
+        'nom'         => 'IUE — Identification Unique des Élèves',
+        'description' => 'Registre national des élèves — source primaire de toutes les données individuelles. StatEduc agrège ses données depuis l\'IUE.',
+        'icon'        => 'fas fa-id-card',
+        'couleur'     => '#00897b',
+        'fichier_mock'=> 'iue.json',
+        'endpoint_key'=> 'iue',
+        'systeme'     => 'iue',
+        'source_primaire' => true,
+        'badge_extra' => '<span class="badge badge-pill ml-1" style="background:#00897b20;color:#00695c;font-size:.65rem">SOURCE PRIMAIRE</span>',
+    ],
+    [
         'nom'        => 'StatEduc',
-        'description'=> 'Système de recensement scolaire pluriannuel (cœur du SIGE)',
+        'description'=> 'Système de recensement scolaire pluriannuel — agrège les données élèves depuis l\'IUE',
         'icon'       => 'fas fa-database',
         'couleur'    => '#1e88e5',
         'fichier_mock'=> 'eleves.json + etablissements.json',
         'endpoint_key'=> 'statEduc',
         'systeme'    => 'statEduc',
+        'source_primaire' => false,
+        'badge_extra' => '',
     ],
     [
         'nom'        => 'SIGE-RH',
@@ -57,6 +70,8 @@ $connecteursConfig = [
         'fichier_mock'=> 'rh.json',
         'endpoint_key'=> 'sige_rh',
         'systeme'    => 'sige_rh',
+        'source_primaire' => false,
+        'badge_extra' => '',
     ],
     [
         'nom'        => 'Examens & concours',
@@ -66,6 +81,8 @@ $connecteursConfig = [
         'fichier_mock'=> 'examens.json',
         'endpoint_key'=> 'examens',
         'systeme'    => 'examens',
+        'source_primaire' => false,
+        'badge_extra' => '',
     ],
     [
         'nom'        => 'Carte scolaire',
@@ -75,6 +92,8 @@ $connecteursConfig = [
         'fichier_mock'=> 'etablissements.json + referentiels.json',
         'endpoint_key'=> 'carte',
         'systeme'    => 'carte',
+        'source_primaire' => false,
+        'badge_extra' => '',
     ],
     [
         'nom'        => 'Référentiels communs',
@@ -84,6 +103,8 @@ $connecteursConfig = [
         'fichier_mock'=> 'referentiels.json',
         'endpoint_key'=> 'referentiels',
         'systeme'    => 'referentiels',
+        'source_primaire' => false,
+        'badge_extra' => '',
     ],
 ];
 
@@ -101,15 +122,18 @@ foreach ($connecteursConfig as $conn):
         }
     }
 ?>
-<div class="col-lg-6 col-xl-4 mb-4">
-    <div class="card h-100" style="border-top: 4px solid <?= e($conn['couleur']) ?>">
+<div class="col-lg-6 col-xl-4 mb-4" id="<?= !empty($conn['source_primaire']) ? 'iue' : '' ?>">
+    <div class="card h-100" style="border-top: 4px solid <?= e($conn['couleur']) ?><?= !empty($conn['source_primaire']) ? ';box-shadow:0 4px 16px rgba(0,137,123,.18)' : '' ?>"  >
         <div class="card-body">
             <div class="d-flex align-items-start mb-3">
-                <div style="width:48px;height:48px;background:<?= e($conn['couleur']) ?>20;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                <div style="width:48px;height:48px;background:<?= e($conn['couleur']) ?>20;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0<?= !empty($conn['source_primaire']) ? ';border:2px solid '.e($conn['couleur']) : '' ?>">
                     <i class="<?= e($conn['icon']) ?>" style="color:<?= e($conn['couleur']) ?>;font-size:1.3rem"></i>
                 </div>
-                <div class="ml-3">
-                    <h5 style="font-weight:800;margin-bottom:.25rem"><?= e($conn['nom']) ?></h5>
+                <div class="ml-3 flex-grow-1">
+                    <h5 style="font-weight:800;margin-bottom:.25rem">
+                        <?= e($conn['nom']) ?>
+                        <?= $conn['badge_extra'] ?? '' ?>
+                    </h5>
                     <p style="font-size:.8rem;color:#9aa0a6;margin-bottom:0"><?= e($conn['description']) ?></p>
                 </div>
             </div>
@@ -231,6 +255,120 @@ foreach ($connecteursConfig as $conn):
                     </span>
                     <small class="text-muted ml-2">Vérifié le <?= e($statusTest['timestamp']) ?></small>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ─── Schéma flux IUE → StatEduc → SIGE ─── -->
+<div class="row mb-0">
+    <div class="col-12">
+        <div class="card" style="border-top:4px solid #00897b">
+            <div class="card-header" style="background:linear-gradient(135deg,#00897b,#26a69a);color:white">
+                <h3 class="card-title text-white">
+                    <i class="fas fa-project-diagram mr-2"></i>
+                    Flux de données : IUE → StatEduc → SIGE Interopérabilité
+                </h3>
+            </div>
+            <div class="card-body">
+                <p class="text-muted mb-3" style="font-size:.88rem">
+                    <strong>L'IUE est la source primaire de toutes les données élèves.</strong>
+                    StatEduc n'a pas sa propre base individuelle : il agrège et consolide les données issues du registre IUE
+                    pour produire les statistiques scolaires annuelles utilisées par le SIGE.
+                </p>
+                <!-- Schéma visuel -->
+                <div class="d-flex align-items-center justify-content-center flex-wrap gap-3 py-2">
+                    <!-- IUE -->
+                    <div class="text-center" style="min-width:130px">
+                        <div style="width:64px;height:64px;background:#00897b;border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto .5rem;box-shadow:0 4px 12px rgba(0,137,123,.3)">
+                            <i class="fas fa-id-card text-white" style="font-size:1.6rem"></i>
+                        </div>
+                        <div style="font-weight:800;font-size:.85rem;color:#00695c">IUE</div>
+                        <div style="font-size:.72rem;color:#9aa0a6">Registre national</div>
+                        <div style="font-size:.72rem;color:#9aa0a6">2,58M élèves</div>
+                        <span class="badge mt-1" style="background:#00897b20;color:#00695c;font-size:.65rem">SOURCE PRIMAIRE</span>
+                    </div>
+                    <!-- Flèche 1 -->
+                    <div class="text-center">
+                        <i class="fas fa-long-arrow-alt-right" style="font-size:1.8rem;color:#00897b"></i>
+                        <div style="font-size:.68rem;color:#9aa0a6;margin-top:-4px">NID + inscriptions</div>
+                    </div>
+                    <!-- StatEduc -->
+                    <div class="text-center" style="min-width:130px">
+                        <div style="width:64px;height:64px;background:#1e88e5;border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto .5rem;box-shadow:0 4px 12px rgba(30,136,229,.3)">
+                            <i class="fas fa-database text-white" style="font-size:1.6rem"></i>
+                        </div>
+                        <div style="font-weight:800;font-size:.85rem;color:#1565c0">StatEduc</div>
+                        <div style="font-size:.72rem;color:#9aa0a6">Recensement scolaire</div>
+                        <div style="font-size:.72rem;color:#9aa0a6">Agréga&shy;tion annuelle</div>
+                        <span class="badge badge-sige-api mt-1" style="font-size:.65rem">AGRÉGATEUR</span>
+                    </div>
+                    <!-- Flèche 2 -->
+                    <div class="text-center">
+                        <i class="fas fa-long-arrow-alt-right" style="font-size:1.8rem;color:#1e88e5"></i>
+                        <div style="font-size:.68rem;color:#9aa0a6;margin-top:-4px">Stats consolidées</div>
+                    </div>
+                    <!-- SIGE -->
+                    <div class="text-center" style="min-width:130px">
+                        <div style="width:64px;height:64px;background:linear-gradient(135deg,#1565c0,#1e88e5);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto .5rem;box-shadow:0 4px 12px rgba(21,101,192,.3)">
+                            <i class="fas fa-graduation-cap text-white" style="font-size:1.6rem"></i>
+                        </div>
+                        <div style="font-weight:800;font-size:.85rem;color:#1565c0">SIGE</div>
+                        <div style="font-size:.72rem;color:#9aa0a6">Interopérabilité</div>
+                        <div style="font-size:.72rem;color:#9aa0a6">Exposition unifiée</div>
+                        <span class="badge badge-sige-mock mt-1" style="font-size:.65rem">HUB CENTRAL</span>
+                    </div>
+                    <!-- Flèche 3 -->
+                    <div class="text-center">
+                        <i class="fas fa-long-arrow-alt-right" style="font-size:1.8rem;color:#43a047"></i>
+                        <div style="font-size:.68rem;color:#9aa0a6;margin-top:-4px">APIs exposées</div>
+                    </div>
+                    <!-- Partenaires -->
+                    <div class="text-center" style="min-width:110px">
+                        <div style="width:64px;height:64px;background:#f8f9fa;border:2px dashed #43a047;border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto .5rem">
+                            <i class="fas fa-share-alt" style="font-size:1.4rem;color:#43a047"></i>
+                        </div>
+                        <div style="font-weight:800;font-size:.85rem;color:#2e7d32">Partenaires</div>
+                        <div style="font-size:.72rem;color:#9aa0a6">RH · Examens</div>
+                        <div style="font-size:.72rem;color:#9aa0a6">Carte · Référentiels</div>
+                    </div>
+                </div>
+                <!-- Alerte couverture NID -->
+                <?php
+                $iueData = [];
+                $iueFile = MOCK_DATA_PATH . '/iue.json';
+                if (file_exists($iueFile)) $iueData = json_decode(file_get_contents($iueFile), true) ?? [];
+                $stats = $iueData['statistiques_globales'] ?? [];
+                $alertes = $iueData['alertes'] ?? [];
+                ?>
+                <?php if ($stats): ?>
+                <div class="row mt-3">
+                    <div class="col-md-4 col-6 mb-2">
+                        <div class="p-2 text-center" style="background:#e0f2f1;border-radius:8px">
+                            <div style="font-size:1.4rem;font-weight:800;color:#00695c"><?= number_format($stats['total_eleves_enregistres'], 0, ',', ' ') ?></div>
+                            <div style="font-size:.75rem;color:#00897b">Élèves enregistrés IUE</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-6 mb-2">
+                        <div class="p-2 text-center" style="background:#e8f5e9;border-radius:8px">
+                            <div style="font-size:1.4rem;font-weight:800;color:#2e7d32"><?= number_format($stats['taux_couverture_nid'], 1, ',', '.') ?> %</div>
+                            <div style="font-size:.75rem;color:#43a047">Taux couverture NID</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-6 mb-2">
+                        <div class="p-2 text-center" style="background:#fff3e0;border-radius:8px">
+                            <div style="font-size:1.4rem;font-weight:800;color:#e65100"><?= number_format($stats['sans_nid'], 0, ',', ' ') ?></div>
+                            <div style="font-size:.75rem;color:#fb8c00">Sans NID (à enrôler)</div>
+                        </div>
+                    </div>
+                </div>
+                <?php foreach ($alertes as $al): ?>
+                <div class="alert alert-<?= $al['niveau'] === 'warning' ? 'warning' : ($al['niveau'] === 'success' ? 'success' : 'info') ?> py-2 mb-1" style="font-size:.82rem;border-radius:8px;border:none">
+                    <i class="fas fa-<?= $al['niveau'] === 'warning' ? 'exclamation-triangle' : ($al['niveau'] === 'success' ? 'check-circle' : 'info-circle') ?> mr-1"></i>
+                    <?= e($al['message']) ?>
+                </div>
+                <?php endforeach; ?>
+                <?php endif; ?>
             </div>
         </div>
     </div>
