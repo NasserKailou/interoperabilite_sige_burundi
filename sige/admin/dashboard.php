@@ -62,7 +62,7 @@ if (file_exists($iueFile)) {
                         Sync : <?= date('d/m/Y', strtotime($iueStats['derniere_synchronisation'])) ?>
                     </div>
                 </div>
-                <a href="connecteurs.php" class="btn btn-sm" style="background:#00897b;color:white;border-radius:8px;white-space:nowrap">
+                <a href="connecteurs" class="btn btn-sm" style="background:#00897b;color:white;border-radius:8px;white-space:nowrap">
                     <i class="fas fa-plug mr-1"></i> Gérer connecteurs
                 </a>
             </div>
@@ -80,7 +80,7 @@ if (file_exists($iueFile)) {
                 <p>Établissements</p>
             </div>
             <div class="icon"><i class="fas fa-school"></i></div>
-            <a href="etablissements.php" class="small-box-footer">Détails <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="etablissements" class="small-box-footer">Détails <i class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div>
     <div class="col-lg-3 col-6">
@@ -90,7 +90,7 @@ if (file_exists($iueFile)) {
                 <p>Élèves scolarisés</p>
             </div>
             <div class="icon"><i class="fas fa-users"></i></div>
-            <a href="eleves.php" class="small-box-footer">Détails <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="eleves" class="small-box-footer">Détails <i class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div>
     <div class="col-lg-3 col-6">
@@ -100,7 +100,7 @@ if (file_exists($iueFile)) {
                 <p>Enseignants</p>
             </div>
             <div class="icon"><i class="fas fa-chalkboard-teacher"></i></div>
-            <a href="rh.php" class="small-box-footer">Détails <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="rh" class="small-box-footer">Détails <i class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div>
     <div class="col-lg-3 col-6">
@@ -110,7 +110,7 @@ if (file_exists($iueFile)) {
                 <p>Taux de réussite CN8</p>
             </div>
             <div class="icon"><i class="fas fa-star"></i></div>
-            <a href="examens.php" class="small-box-footer">Détails <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="examens" class="small-box-footer">Détails <i class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div>
 </div>
@@ -168,7 +168,7 @@ if (file_exists($iueFile)) {
                     <i class="fas fa-plug mr-2"></i> État des connecteurs d'interopérabilité
                 </h3>
                 <div class="card-tools">
-                    <a href="connecteurs.php" class="btn btn-sm btn-light">
+                    <a href="connecteurs" class="btn btn-sm btn-light">
                         <i class="fas fa-cog"></i> Gérer
                     </a>
                 </div>
@@ -206,7 +206,7 @@ if (file_exists($iueFile)) {
                 <?php endforeach; ?>
             </div>
             <div class="card-footer text-center py-2">
-                <a href="connecteurs.php" style="font-size:.82rem;color:#1e88e5;font-weight:600">
+                <a href="connecteurs" style="font-size:.82rem;color:#1e88e5;font-weight:600">
                     <i class="fas fa-arrow-right mr-1"></i> Gérer les connecteurs et tester les API
                 </a>
             </div>

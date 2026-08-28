@@ -6,7 +6,7 @@ require_once dirname(__DIR__) . '/includes/bootstrap.php';
 
 // Rediriger si déjà connecté
 if (Auth::isLoggedIn()) {
-    redirect('dashboard.php');
+    redirect('dashboard');
 }
 
 $error = '';
@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (empty($email) || empty($password)) {
             $error = 'Veuillez renseigner votre email et votre mot de passe.';
         } elseif (Auth::login($email, $password)) {
-            redirect('dashboard.php');
+            redirect('dashboard');
         } else {
             // Authentification de démo (sans BDD)
             if ($email === 'admin@sige.bi' && $password === 'Admin2024!') {
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['admin_user_nom']   = 'Administrateur SIGE';
                 $_SESSION['admin_user_email'] = 'admin@sige.bi';
                 $_SESSION['admin_user_role']  = 'superadmin';
-                redirect('dashboard.php');
+                redirect('dashboard');
             }
             $error = 'Email ou mot de passe incorrect.';
             log_event('warning', 'AUTH', 'Tentative de connexion échouée', ['email' => $email]);
@@ -194,7 +194,7 @@ $csrf = csrf_token();
         </div>
         <?php endif; ?>
 
-        <form method="POST" action="login.php" novalidate>
+        <form method="POST" action="login" novalidate>
             <input type="hidden" name="<?= CSRF_TOKEN_NAME ?>" value="<?= e($csrf) ?>">
 
             <div class="form-group">

@@ -33,8 +33,12 @@ DirectoryIndex index.php
     RewriteCond %{REQUEST_FILENAME} -d
     RewriteRule ^ - [L]
 
-    # ── 2. Tout le reste → index.php (portail principal) ─────────────────
-    # Les routes /api/ et /admin/ sont des fichiers PHP réels → règle 1 s'applique
+    # ── 2. URLs propres : rewrite X → X.php si le fichier .php existe ────
+    # Ex: /public/api/eleves → /public/api/eleves.php
+    RewriteCond %{REQUEST_FILENAME}.php -f
+    RewriteRule ^(.+)$ $1.php [L,QSA]
+
+    # ── 3. Tout le reste → index.php (portail principal) ─────────────────
     RewriteRule ^ index.php [L,QSA]
 </IfModule>
 

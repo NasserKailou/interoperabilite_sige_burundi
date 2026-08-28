@@ -161,11 +161,11 @@ $activePage = $activePage ?? 'dashboard';
                 </div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item" href="profile.php">
+                <a class="dropdown-item" href="profile">
                     <i class="fas fa-user mr-2"></i> Mon profil
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item text-danger" href="logout.php">
+                <a class="dropdown-item text-danger" href="logout">
                     <i class="fas fa-sign-out-alt mr-2"></i> Déconnexion
                 </a>
             </div>
@@ -175,7 +175,7 @@ $activePage = $activePage ?? 'dashboard';
 
 <!-- ─── SIDEBAR ─── -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <a href="dashboard.php" class="brand-link">
+    <a href="dashboard" class="brand-link">
         <div class="sidebar-brand-logo d-inline-block align-top ml-1">
             <i class="fas fa-graduation-cap text-white"></i>
         </div>
@@ -204,7 +204,7 @@ $activePage = $activePage ?? 'dashboard';
 
                 <li class="nav-header">TABLEAU DE BORD</li>
                 <li class="nav-item">
-                    <a href="dashboard.php" class="nav-link <?= $activePage === 'dashboard' ? 'active' : '' ?>">
+                    <a href="dashboard" class="nav-link <?= $activePage === 'dashboard' ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>Vue d'ensemble</p>
                     </a>
@@ -212,25 +212,25 @@ $activePage = $activePage ?? 'dashboard';
 
                 <li class="nav-header">DONNÉES SIGE</li>
                 <li class="nav-item">
-                    <a href="eleves.php" class="nav-link <?= $activePage === 'eleves' ? 'active' : '' ?>">
+                    <a href="eleves" class="nav-link <?= $activePage === 'eleves' ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-users"></i>
                         <p>Données élèves</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="rh.php" class="nav-link <?= $activePage === 'rh' ? 'active' : '' ?>">
+                    <a href="rh" class="nav-link <?= $activePage === 'rh' ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-chalkboard-teacher"></i>
                         <p>Ressources humaines</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="examens.php" class="nav-link <?= $activePage === 'examens' ? 'active' : '' ?>">
+                    <a href="examens" class="nav-link <?= $activePage === 'examens' ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-file-alt"></i>
                         <p>Examens &amp; concours</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="etablissements.php" class="nav-link <?= $activePage === 'etablissements' ? 'active' : '' ?>">
+                    <a href="etablissements" class="nav-link <?= $activePage === 'etablissements' ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-school"></i>
                         <p>Établissements</p>
                     </a>
@@ -244,7 +244,7 @@ $activePage = $activePage ?? 'dashboard';
 
                 <li class="nav-header">INTEROPÉRABILITÉ</li>
                 <li class="nav-item">
-                    <a href="connecteurs.php#iue" class="nav-link <?= $activePage === 'iue' ? 'active' : '' ?>"
+                    <a href="connecteurs#iue" class="nav-link <?= $activePage === 'iue' ? 'active' : '' ?>"
                        style="<?= $activePage === 'iue' ? '' : 'color:rgba(255,255,255,.9)!important' ?>">
                         <i class="nav-icon fas fa-id-card" style="color:rgba(102,230,210,.9)"></i>
                         <p>IUE — Élèves
@@ -253,7 +253,7 @@ $activePage = $activePage ?? 'dashboard';
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="connecteurs.php" class="nav-link <?= $activePage === 'connecteurs' ? 'active' : '' ?>">
+                    <a href="connecteurs" class="nav-link <?= $activePage === 'connecteurs' ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-plug"></i>
                         <p>Connecteurs</p>
                         <span class="badge badge-sige-mock ml-auto rounded-pill px-2">
@@ -262,13 +262,13 @@ $activePage = $activePage ?? 'dashboard';
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="referentiels.php" class="nav-link <?= $activePage === 'referentiels' ? 'active' : '' ?>">
+                    <a href="referentiels" class="nav-link <?= $activePage === 'referentiels' ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-book"></i>
                         <p>Référentiels communs</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="logs.php" class="nav-link <?= $activePage === 'logs' ? 'active' : '' ?>">
+                    <a href="logs" class="nav-link <?= $activePage === 'logs' ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-list-alt"></i>
                         <p>Journal des échanges</p>
                     </a>
@@ -276,13 +276,13 @@ $activePage = $activePage ?? 'dashboard';
 
                 <li class="nav-header">ADMINISTRATION</li>
                 <li class="nav-item">
-                    <a href="utilisateurs.php" class="nav-link <?= $activePage === 'utilisateurs' ? 'active' : '' ?>">
+                    <a href="utilisateurs" class="nav-link <?= $activePage === 'utilisateurs' ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-users-cog"></i>
                         <p>Utilisateurs</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="logout.php" class="nav-link text-danger">
+                    <a href="logout" class="nav-link text-danger">
                         <i class="nav-icon fas fa-sign-out-alt" style="color:#ef9a9a"></i>
                         <p>Déconnexion</p>
                     </a>

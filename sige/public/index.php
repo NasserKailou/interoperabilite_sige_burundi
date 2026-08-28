@@ -80,7 +80,7 @@ foreach ($annees as $a) {
             <li><a href="#" data-section="carte" onclick="showSection('carte');return false;">
                 <i class="fas fa-map-marked-alt"></i> Carte scolaire
             </a></li>
-            <li><a href="<?= ADMIN_BASE_URL ?>/login.php" class="navbar-admin-link" target="_self">
+            <li><a href="<?= ADMIN_BASE_URL ?>/login" class="navbar-admin-link" target="_self">
                 <i class="fas fa-lock"></i> Administration
             </a></li>
         </ul>
@@ -92,7 +92,7 @@ foreach ($annees as $a) {
     <div class="hero-inner">
         <div class="hero-text">
             <div class="hero-flag">
-                <i class="fas fa-flag" style="font-size:.9rem"></i>
+                <span style="font-size:1.15rem;line-height:1;display:inline-flex;align-items:center" title="Drapeau de la République du Burundi" aria-label="Drapeau du Burundi">🇧🇮</span>
                 <span>République du Burundi</span>
                 <span class="hero-badge">
                     <i class="fas fa-database"></i> Mode démonstration
@@ -317,22 +317,28 @@ foreach ($annees as $a) {
             </h4>
             <?php
             $systemes = [
-                ['StatEduc', 'Recensement scolaire pluriannuel', 'fas fa-database', '#e3f2fd', '#1565c0'],
-                ['SIGE-RH', 'Gestion des ressources humaines', 'fas fa-users-cog', '#e8f5e9', '#2e7d32'],
-                ['Examens', 'Concours nationaux &amp; examen d\'État', 'fas fa-file-alt', '#ffebee', '#b71c1c'],
-                ['Carte scolaire', 'Géolocalisation des établissements', 'fas fa-map-marked-alt', '#e1f5fe', '#01579b'],
+                ['IUE',          'Identification Unique des Élèves — registre national', 'fas fa-id-card',        '#e0f2f1', '#00695c', true ],
+                ['StatEduc',     'Recensement scolaire — agrège les données IUE',         'fas fa-database',       '#e3f2fd', '#1565c0', false],
+                ['SIGE-RH',      'Gestion des ressources humaines',                       'fas fa-users-cog',      '#e8f5e9', '#2e7d32', false],
+                ['Examens',      'Concours nationaux &amp; examen d\'État',               'fas fa-file-alt',       '#ffebee', '#b71c1c', false],
+                ['Carte scolaire','Géolocalisation des établissements',                   'fas fa-map-marked-alt', '#e1f5fe', '#01579b', false],
             ];
-            foreach ($systemes as [$nom, $desc, $icon, $bg, $color]): ?>
-            <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem;background:rgba(255,255,255,.12);border-radius:8px;padding:.6rem .85rem">
-                <div style="width:32px;height:32px;background:rgba(255,255,255,.2);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-                    <i class="<?= $icon ?>" style="font-size:.85rem"></i>
+            foreach ($systemes as [$nom, $desc, $icon, $bg, $color, $isPrimaire]): ?>
+            <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem;background:<?= $isPrimaire ? 'rgba(0,230,180,.18)' : 'rgba(255,255,255,.12)' ?>;border-radius:8px;padding:.6rem .85rem;<?= $isPrimaire ? 'border:1px solid rgba(0,230,180,.35);' : '' ?>">
+                <div style="width:32px;height:32px;background:<?= $isPrimaire ? 'rgba(0,230,180,.25)' : 'rgba(255,255,255,.2)' ?>;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                    <i class="<?= $icon ?>" style="font-size:.85rem<?= $isPrimaire ? ';color:#4fffda' : '' ?>"></i>
                 </div>
-                <div>
-                    <div style="font-size:.82rem;font-weight:700"><?= $nom ?></div>
+                <div style="flex:1;min-width:0">
+                    <div style="font-size:.82rem;font-weight:700;display:flex;align-items:center;gap:.4rem">
+                        <?= $nom ?>
+                        <?php if ($isPrimaire): ?>
+                        <span style="font-size:.58rem;font-weight:800;background:linear-gradient(90deg,#00e5b0,#00b88a);color:#003d2e;border-radius:12px;padding:1px 6px;letter-spacing:.04em;text-transform:uppercase">SOURCE PRIMAIRE</span>
+                        <?php endif; ?>
+                    </div>
                     <div style="font-size:.72rem;opacity:.75"><?= $desc ?></div>
                 </div>
-                <div style="margin-left:auto;font-size:.65rem;background:rgba(255,255,255,.15);border-radius:20px;padding:2px 8px;color:rgba(255,255,255,.9)">
-                    ACTIF
+                <div style="margin-left:auto;flex-shrink:0;font-size:.65rem;background:<?= $isPrimaire ? 'rgba(0,230,180,.25)' : 'rgba(255,255,255,.15)' ?>;border-radius:20px;padding:2px 8px;color:<?= $isPrimaire ? '#4fffda' : 'rgba(255,255,255,.9)' ?>">
+                    <?= $isPrimaire ? 'ACTIF ★' : 'ACTIF' ?>
                 </div>
             </div>
             <?php endforeach; ?>
@@ -637,14 +643,30 @@ foreach ($annees as $a) {
         <span style="margin-left:auto;color:var(--text-muted)" id="carte-count-label">—</span>
     </div>
 
-    <!-- Carte Leaflet -->
-    <div id="map-container" style="border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.12);position:relative">
-        <div id="map-loading" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:1000;background:rgba(255,255,255,.95);padding:1.5rem 2.5rem;border-radius:12px;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.15)">
-            <i class="fas fa-spinner fa-spin fa-2x" style="color:var(--blue);margin-bottom:.5rem"></i>
-            <div style="font-weight:600;color:var(--text-primary)">Chargement de la carte…</div>
-            <div style="font-size:.8rem;color:var(--text-muted)">683 établissements géolocalisés</div>
+    <!-- Carte Leaflet — zone agrandie + contrôle fond -->
+    <div id="map-container" style="border-radius:16px;overflow:hidden;box-shadow:0 6px 32px rgba(0,0,0,.15);position:relative;border:1px solid rgba(30,136,229,.15)">
+
+        <!-- Barre de contrôle fond de carte -->
+        <div id="map-basemap-bar" style="position:absolute;top:10px;right:50px;z-index:1000;display:flex;gap:6px;background:rgba(255,255,255,.95);border-radius:8px;padding:5px 8px;box-shadow:0 2px 10px rgba(0,0,0,.15)">
+            <button onclick="switchBasemap('positron')" id="btn-positron" class="basemap-btn active" title="Fond clair">
+                <i class="fas fa-map"></i> Clair
+            </button>
+            <button onclick="switchBasemap('osm')" id="btn-osm" class="basemap-btn" title="OpenStreetMap">
+                <i class="fas fa-globe"></i> OSM
+            </button>
+            <button onclick="switchBasemap('topo')" id="btn-topo" class="basemap-btn" title="Relief">
+                <i class="fas fa-mountain"></i> Relief
+            </button>
         </div>
-        <div id="sige-map" style="height:680px;width:100%"></div>
+
+        <!-- Overlay de chargement -->
+        <div id="map-loading" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:1000;background:rgba(255,255,255,.97);padding:1.5rem 2.5rem;border-radius:14px;text-align:center;box-shadow:0 4px 24px rgba(0,0,0,.18)">
+            <i class="fas fa-spinner fa-spin fa-2x" style="color:var(--blue);margin-bottom:.5rem"></i>
+            <div style="font-weight:700;color:var(--text-primary)">Chargement de la carte…</div>
+            <div style="font-size:.8rem;color:var(--text-muted);margin-top:.25rem">683 établissements géolocalisés</div>
+        </div>
+
+        <div id="sige-map" style="height:820px;width:100%"></div>
     </div>
 
     <!-- Tableau résultats carte -->
@@ -705,7 +727,7 @@ foreach ($annees as $a) {
         <div class="footer-section">
             <h5>Liens utiles</h5>
             <ul>
-                <li><a href="../admin/">Espace administration</a></li>
+                <li><a href="<?= ADMIN_BASE_URL ?>/login">Espace administration</a></li>
                 <li><a href="#">Documentation API</a></li>
                 <li><a href="#">StatEduc</a></li>
                 <li><a href="#">Portail du gouvernement</a></li>
@@ -713,7 +735,7 @@ foreach ($annees as $a) {
         </div>
     </div>
     <div class="footer-bottom">
-        <span>&copy; <?= date('Y') ?> République du Burundi — Ministère de l'Éducation Nationale</span>
+        <span>&copy; <?= date('Y') ?> 🇧🇮 République du Burundi — Ministère de l'Éducation Nationale</span>
         <span>SIGE v<?= APP_VERSION ?> · Mode : <?= e(DATA_SOURCE_MODE) ?></span>
     </div>
 </footer>
@@ -831,32 +853,105 @@ var SIGE_MAP = {
 };
 
 // Initialiser la carte Leaflet (appelée à la première ouverture de la section)
+// ─── Fonds de carte disponibles ─────────────────────────────────────────────
+var BASEMAPS = {
+    positron: {
+        url: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+        attr: '© <a href="https://www.openstreetmap.org/copyright">OSM</a> © <a href="https://carto.com/">CARTO</a> | SIGE Burundi',
+        maxZoom: 19
+    },
+    osm: {
+        url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        attr: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | SIGE Burundi',
+        maxZoom: 19
+    },
+    topo: {
+        url: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
+        attr: '© <a href="https://opentopomap.org/">OpenTopoMap</a> | SIGE Burundi',
+        maxZoom: 17
+    }
+};
+
+// Limites géographiques du Burundi (bbox approximatif)
+var BURUNDI_BOUNDS = L.latLngBounds(
+    L.latLng(-4.47, 28.98),  // SW
+    L.latLng(-2.31, 30.85)   // NE
+);
+// Centre précis du Burundi
+var BURUNDI_CENTER = [-3.3731, 29.9189];
+
 function initSigeMap() {
     if (SIGE_MAP.initialized) return;
     SIGE_MAP.initialized = true;
 
-    // Créer la carte centrée sur le Burundi
+    // ── Créer la carte avec contraintes géographiques ──────────────────────
     SIGE_MAP.map = L.map('sige-map', {
-        center: [-3.3731, 29.9189],
+        center: BURUNDI_CENTER,
         zoom: 8,
-        zoomControl: true,
+        minZoom: 7,                          // Empêche de dézoomer trop loin
+        maxZoom: 18,
+        maxBounds: BURUNDI_BOUNDS.pad(0.25), // Zone maximale avec marge 25%
+        maxBoundsViscosity: 0.85,            // Résistance aux sorties
+        zoomControl: false,                  // On place le contrôle manuellement
         attributionControl: true
     });
 
-    // Fond de carte OpenStreetMap
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | SIGE Burundi',
-        maxZoom: 18
+    // Contrôle zoom en bas à droite
+    L.control.zoom({ position: 'bottomright' }).addTo(SIGE_MAP.map);
+
+    // ── Fond de carte par défaut : CartoDB Positron (clair, neutre, pro) ──
+    SIGE_MAP.currentBasemap = 'positron';
+    SIGE_MAP.basemapLayer = L.tileLayer(BASEMAPS.positron.url, {
+        attribution: BASEMAPS.positron.attr,
+        subdomains: 'abcd',
+        maxZoom: BASEMAPS.positron.maxZoom
     }).addTo(SIGE_MAP.map);
 
-    // Groupe de clustering des marqueurs
+    // ── Masque géographique : voile sur les pays voisins ──────────────────
+    var boundaryUrl = (window.SIGE_BASE||'') + '/api/boundary.php?type=mask';
+    fetch(boundaryUrl)
+        .then(r => r.json())
+        .then(function(maskGeoJson) {
+            L.geoJSON(maskGeoJson, {
+                style: {
+                    fillColor:   '#e8eef4',  // Gris-bleu doux
+                    fillOpacity: 0.78,       // Voile semi-opaque sur pays voisins
+                    color:       'transparent',
+                    weight:      0
+                },
+                interactive: false           // Non cliquable
+            }).addTo(SIGE_MAP.map);
+
+            // Contour officiel du Burundi par-dessus le masque
+            var borderUrl = (window.SIGE_BASE||'') + '/api/boundary.php?type=boundary';
+            return fetch(borderUrl);
+        })
+        .then(r => r.json())
+        .then(function(boundaryGeoJson) {
+            L.geoJSON(boundaryGeoJson, {
+                style: {
+                    color:       '#1565c0',  // Bleu SIGE
+                    weight:      2.5,
+                    opacity:     0.9,
+                    fillOpacity: 0,          // Pas de remplissage = transparent
+                    dashArray:   null
+                },
+                interactive: false
+            }).addTo(SIGE_MAP.map);
+        })
+        .catch(function(err) {
+            console.warn('Frontière Burundi non chargée:', err);
+        });
+
+    // ── Groupe de clustering des marqueurs ────────────────────────────────
     SIGE_MAP.clusterGroup = L.markerClusterGroup({
         chunkedLoading: true,
         maxClusterRadius: 50,
         showCoverageOnHover: false,
+        spiderfyOnMaxZoom: true,
         iconCreateFunction: function(cluster) {
             var count = cluster.getChildCount();
-            var size = count < 10 ? 'small' : count < 50 ? 'medium' : 'large';
+            var size  = count < 10 ? 'small' : count < 50 ? 'medium' : 'large';
             return L.divIcon({
                 html: '<div class="cluster-icon cluster-' + size + '">' + count + '</div>',
                 className: '',
@@ -866,8 +961,42 @@ function initSigeMap() {
     });
     SIGE_MAP.map.addLayer(SIGE_MAP.clusterGroup);
 
-    // Charger les données GeoJSON
+    // ── Échelle graphique ─────────────────────────────────────────────────
+    L.control.scale({ metric: true, imperial: false, position: 'bottomleft' }).addTo(SIGE_MAP.map);
+
+    // ── Charger les données établissements ────────────────────────────────
     loadCarteData();
+}
+
+// Changer le fond de carte
+function switchBasemap(name) {
+    if (!SIGE_MAP.map || SIGE_MAP.currentBasemap === name) return;
+    var def = BASEMAPS[name];
+    if (!def) return;
+
+    // Retirer l'ancien fond
+    if (SIGE_MAP.basemapLayer) {
+        SIGE_MAP.map.removeLayer(SIGE_MAP.basemapLayer);
+    }
+
+    // Ajouter le nouveau et le mettre en bas de la pile
+    SIGE_MAP.basemapLayer = L.tileLayer(def.url, {
+        attribution: def.attr,
+        subdomains: name === 'positron' ? 'abcd' : 'abc',
+        maxZoom: def.maxZoom
+    }).addTo(SIGE_MAP.map);
+
+    // S'assurer que le basemap est SOUS les layers existants
+    SIGE_MAP.basemapLayer.bringToBack();
+
+    SIGE_MAP.currentBasemap = name;
+
+    // Mise à jour boutons UI
+    document.querySelectorAll('.basemap-btn').forEach(function(b) {
+        b.classList.remove('active');
+    });
+    var activeBtn = document.getElementById('btn-' + name);
+    if (activeBtn) activeBtn.classList.add('active');
 }
 
 // Créer une icône personnalisée selon la couleur
@@ -957,22 +1086,27 @@ function renderCarteMarkers(features) {
             icon: createMarkerIcon(props.color, props.milieu)
         });
 
-        // Popup enrichi
+        // Popup enrichi — style moderne avec header coloré
         marker.bindPopup([
             '<div class="sige-popup">',
-            '<div class="sige-popup-title"><i class="fas fa-school"></i> ' + escapeHtml(props.nom) + '</div>',
+            '<div class="sige-popup-title">',
+            '  <i class="fas fa-school"></i>',
+            '  <span>' + escapeHtml(props.nom) + '</span>',
+            '</div>',
+            '<div class="sige-popup-body">',
             '<table class="sige-popup-table">',
-            '<tr><td><i class="fas fa-map"></i> Province</td><td><strong>' + escapeHtml(props.province) + '</strong></td></tr>',
-            '<tr><td><i class="fas fa-city"></i> Commune</td><td>' + escapeHtml(props.commune) + '</td></tr>',
-            '<tr><td><i class="fas fa-mountain"></i> Colline</td><td>' + escapeHtml(props.colline) + '</td></tr>',
-            '<tr><td><i class="fas fa-layer-group"></i> Secteur</td><td><span style="background:' + props.color + ';color:#fff;padding:2px 8px;border-radius:10px;font-size:.78rem">' + escapeHtml(props.secteur || 'N/A') + '</span></td></tr>',
-            '<tr><td><i class="fas fa-tag"></i> Statut</td><td>' + escapeHtml(props.statut || 'N/A') + '</td></tr>',
-            '<tr><td><i class="fas fa-map-pin"></i> Milieu</td><td>' + (props.milieu === 'urbain' ? '<span style="color:#1e88e5">🏙 Urbain</span>' : '<span style="color:#43a047">🌿 Rural</span>') + '</td></tr>',
-            props.annee_creation ? '<tr><td><i class="fas fa-calendar"></i> Création</td><td>' + props.annee_creation + '</td></tr>' : '',
+            '<tr><td><i class="fas fa-map-marker-alt"></i>Province</td><td><strong>' + escapeHtml(props.province) + '</strong></td></tr>',
+            '<tr><td><i class="fas fa-city"></i>Commune</td><td>' + escapeHtml(props.commune) + '</td></tr>',
+            '<tr><td><i class="fas fa-mountain"></i>Colline</td><td>' + escapeHtml(props.colline) + '</td></tr>',
+            '<tr><td><i class="fas fa-layer-group"></i>Secteur</td><td><span style="background:' + props.color + ';color:#fff;padding:2px 9px;border-radius:10px;font-size:.76rem;font-weight:700">' + escapeHtml(props.secteur || 'N/A') + '</span></td></tr>',
+            '<tr><td><i class="fas fa-tag"></i>Statut</td><td><span style="font-size:.8rem">' + escapeHtml(props.statut || 'N/A') + '</span></td></tr>',
+            '<tr><td><i class="fas fa-map-pin"></i>Milieu</td><td>' + (props.milieu === 'urbain' ? '<span style="color:#1e88e5;font-weight:700">🏙 Urbain</span>' : '<span style="color:#43a047;font-weight:700">🌿 Rural</span>') + '</td></tr>',
+            props.annee_creation ? '<tr><td><i class="fas fa-calendar-alt"></i>Création</td><td>' + props.annee_creation + '</td></tr>' : '',
             '</table>',
-            '<div style="margin-top:.5rem;font-size:.75rem;color:#888"><i class="fas fa-crosshairs"></i> ' + coords[1].toFixed(5) + ', ' + coords[0].toFixed(5) + '</div>',
+            '</div>',
+            '<div class="sige-popup-coords"><i class="fas fa-crosshairs mr-1"></i>' + coords[1].toFixed(5) + '° N, ' + coords[0].toFixed(5) + '° E</div>',
             '</div>'
-        ].join(''), { maxWidth: 280 });
+        ].join(''), { maxWidth: 300, className: 'sige-popup-wrapper' });
 
         marker.on('click', function() {
             highlightCarteRow(props.id);
@@ -1143,40 +1277,95 @@ window.showSection = function(section) {
 </script>
 
 <style>
-/* Marqueurs Leaflet personnalisés */
+/* ── Marqueurs Leaflet personnalisés ──────────────────────────────────────── */
 .sige-marker {
     width: 14px; height: 14px;
-    border: 2px solid rgba(255,255,255,0.9);
-    box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+    border: 2.5px solid rgba(255,255,255,0.95);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.35);
     cursor: pointer;
-    transition: transform .15s;
+    transition: transform .15s ease, box-shadow .15s ease;
 }
-.sige-marker:hover { transform: scale(1.4); }
+.sige-marker:hover {
+    transform: scale(1.5);
+    box-shadow: 0 3px 12px rgba(0,0,0,0.5);
+}
 
-/* Cluster icons */
+/* ── Clusters ─────────────────────────────────────────────────────────────── */
 .cluster-icon {
     display: flex; align-items: center; justify-content: center;
-    border-radius: 50%; font-weight: 700; color: #fff;
-    border: 2px solid rgba(255,255,255,0.8);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    border-radius: 50%; font-weight: 800; color: #fff;
+    border: 3px solid rgba(255,255,255,0.9);
+    box-shadow: 0 3px 12px rgba(0,0,0,0.3);
+    letter-spacing: -.5px;
+    font-family: 'Nunito', sans-serif;
 }
-.cluster-small  { width:30px; height:30px; font-size:.78rem; background:#1e88e5; }
-.cluster-medium { width:38px; height:38px; font-size:.85rem; background:#fb8c00; }
-.cluster-large  { width:46px; height:46px; font-size:.95rem; background:#e53935; }
+.cluster-small  { width:32px; height:32px; font-size:.78rem; background:#1e88e5; }
+.cluster-medium { width:40px; height:40px; font-size:.85rem; background:#fb8c00; }
+.cluster-large  { width:50px; height:50px; font-size:.95rem; background:#e53935; }
 
-/* Popup carte */
-.sige-popup { min-width: 220px; }
+/* ── Popups ────────────────────────────────────────────────────────────────── */
+.leaflet-popup-content-wrapper {
+    border-radius: 12px !important;
+    box-shadow: 0 6px 24px rgba(0,0,0,.18) !important;
+    padding: 0 !important;
+    overflow: hidden;
+}
+.leaflet-popup-content { margin: 0 !important; }
+.sige-popup { min-width: 240px; font-family: 'Nunito', sans-serif; }
 .sige-popup-title {
-    font-weight: 700; font-size: .95rem; color: #1a237e;
-    border-bottom: 2px solid #e3f2fd; padding-bottom: .4rem; margin-bottom: .5rem;
+    font-weight: 800; font-size: .95rem; color: #fff;
+    background: linear-gradient(135deg,#1565c0,#1e88e5);
+    padding: .65rem .9rem;
+    display: flex; align-items: center; gap: .5rem;
 }
-.sige-popup-table { width:100%; border-collapse:collapse; font-size:.82rem; }
-.sige-popup-table td { padding: .2rem .3rem; }
-.sige-popup-table td:first-child { color: #666; font-size: .78rem; width: 80px; }
-.sige-popup-table td i { margin-right: 4px; color: #1e88e5; }
+.sige-popup-title i { opacity: .85; }
+.sige-popup-body { padding: .5rem .9rem .75rem; }
+.sige-popup-table { width:100%; border-collapse:collapse; font-size:.81rem; }
+.sige-popup-table td { padding: .22rem .2rem; vertical-align: middle; }
+.sige-popup-table td:first-child { color: #888; font-size: .76rem; width: 80px; white-space: nowrap; }
+.sige-popup-table td i { margin-right: 4px; color: #1e88e5; width: 14px; }
+.sige-popup-coords {
+    font-size: .72rem; color: #aaa;
+    padding: .4rem .9rem .6rem;
+    border-top: 1px solid #f0f0f0;
+    font-family: monospace;
+}
 
-/* Ligne surlignée dans le tableau */
+/* ── Sélecteur fond de carte ────────────────────────────────────────────────── */
+.basemap-btn {
+    background: transparent; border: none; cursor: pointer;
+    font-size: .73rem; font-weight: 700; color: #666;
+    padding: 3px 8px; border-radius: 5px;
+    display: flex; align-items: center; gap: 4px;
+    font-family: 'Nunito', sans-serif;
+    transition: all .15s;
+}
+.basemap-btn:hover { background: #e3f2fd; color: #1565c0; }
+.basemap-btn.active { background: #1e88e5; color: #fff; }
+.basemap-btn i { font-size: .7rem; }
+
+/* ── Contrôle scale Leaflet stylé ─────────────────────────────────────────── */
+.leaflet-control-scale-line {
+    border: 2px solid #1e88e5 !important;
+    border-top: none !important;
+    color: #1e88e5 !important;
+    font-weight: 700 !important;
+    font-size: .75rem !important;
+    font-family: 'Nunito', sans-serif !important;
+    background: rgba(255,255,255,.9) !important;
+    padding: 0 6px !important;
+    border-radius: 0 0 4px 4px !important;
+}
+
+/* ── Ligne surlignée dans le tableau ──────────────────────────────────────── */
 tr.row-highlight { background: #e3f2fd !important; }
+
+/* ── Attribution Leaflet ──────────────────────────────────────────────────── */
+.leaflet-control-attribution {
+    font-size: .68rem !important;
+    background: rgba(255,255,255,.85) !important;
+    border-radius: 6px 0 0 0 !important;
+}
 </style>
 
 </body>
